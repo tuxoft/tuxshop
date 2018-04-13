@@ -2,7 +2,17 @@ import styled from "styled-components";
 import ContainerComponent from "../Container";
 
 export const Topbar = styled.header`
-  height: 200px;
+  height: 80px;
+
+  // Tablet
+  @media (min-width: 600px) {
+    height: 100px;
+  }
+
+  // Desktop
+  @media (min-width: 600px) {
+    height: 200px;
+  }
 `;
 
 export const Container = styled(ContainerComponent) `

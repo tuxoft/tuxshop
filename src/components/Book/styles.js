@@ -8,7 +8,7 @@ export const Book = styled.div`
 
 export const Cover = styled.div`
   background-color: #f1f1f1;
-  height: 200px;
+  height: 400px;
   width: 100%;
   margin-bottom: 1rem;
 
