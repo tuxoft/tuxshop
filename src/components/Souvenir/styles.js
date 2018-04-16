@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Book = styled.div`
+export const Souvenir = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -24,6 +24,10 @@ export const Title = styled.h1`
 `;
 
 export const Author = styled.h4`
+  margin: 0 0 1rem 0;
+`;
+
+export const Manufacturer = styled.h4`
   margin: 0 0 1rem 0;
 `;
 

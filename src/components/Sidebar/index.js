@@ -4,8 +4,8 @@ import * as styles from "./styles";
 const Sidebar = (props) => (
   <styles.Sidebar {...props}>
     <styles.Nav>
-      <styles.NavItem>Books</styles.NavItem>
-      <styles.NavItem>Souvenirs</styles.NavItem>
+      <styles.NavItem to="/">Books</styles.NavItem>
+      <styles.NavItem to="/?category=souvenirs">Souvenirs</styles.NavItem>
     </styles.Nav>
   </styles.Sidebar>
 );

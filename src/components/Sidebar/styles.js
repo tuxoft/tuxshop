@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Sidebar = styled.aside`
   width: 100%;
@@ -23,7 +25,7 @@ export const Nav = styled.nav`
   }
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled(props => <Link {...props} />)`
   &:not(:last-child) {
     margin-right: 1rem;
   }
