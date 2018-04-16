@@ -28,3 +28,16 @@ export const Author = styled.h4`
 `;
 
 export const Price = styled.span``;
+
+const Button = styled.button.attrs({ type: "button" })`
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #f1f1f1;
+  background-color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+`;
+
+export const AddToCart = styled(Button)``;
+
+export const RemoveFromCart = styled(Button)``;

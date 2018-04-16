@@ -5,7 +5,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(1, 1fr);
   grid-auto-rows: minmax(400px, auto);
   grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
+  grid-row-gap: 2rem;
 
   // Tablet
   @media (min-width: 600px) {
