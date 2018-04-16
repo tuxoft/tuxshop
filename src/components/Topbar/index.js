@@ -12,8 +12,8 @@ const Topbar = (props) => (
           <styles.Brand>Tux Shop</styles.Brand>
 
           <styles.Nav>
-            <styles.NavItem>Search</styles.NavItem>
-            <styles.NavItem>Cart ({cart.products.length})</styles.NavItem>
+            <styles.NavItem to="/">Search</styles.NavItem>
+            <styles.NavItem to="/cart">Cart ({cart.products.length})</styles.NavItem>
           </styles.Nav>
         </styles.Container>
       </styles.Topbar>

@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import ContainerComponent from "../Container";
 
 export const Topbar = styled.header`
@@ -30,7 +32,10 @@ export const Nav = styled.nav`
   display: flex;
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled(props => <Link {...props} />)`
+  color: #000;
+  text-decoration: none;
+
   &:not(:last-child) {
     margin-right: 1rem;
   }

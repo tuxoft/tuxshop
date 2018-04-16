@@ -10,7 +10,11 @@ export class CartProvider extends Component {
         products: [
           ...this.state.cart.products,
           product
-        ]
+        ],
+        total: this.calculateTotal([
+          ...this.state.cart.products,
+          product
+        ])
       }
     });
   };
@@ -28,7 +32,11 @@ export class CartProvider extends Component {
         products: [
           ...this.state.cart.products.slice(0, productIdx),
           ...this.state.cart.products.slice(productIdx + 1)
-        ]
+        ],
+        total: this.calculateTotal([
+          ...this.state.cart.products.slice(0, productIdx),
+          ...this.state.cart.products.slice(productIdx + 1)
+        ])
       }
     });
   };
@@ -37,6 +45,11 @@ export class CartProvider extends Component {
     const foundProduct = this.state.cart.products.find(p => p.id === product.id);
 
     return foundProduct ? true : false;
+  };
+
+  calculateTotal = (products) => {
+    return products
+      .reduce((acc, current) => acc + current.price, 0);
   };
 
   state = {

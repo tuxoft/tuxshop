@@ -18,7 +18,8 @@ const BOOKS = [
     published: "July 5th 2011",
     publisher: "Tor Books",
     coverUrl: "1-min.jpg",
-    price: 12
+    price: 12,
+    type: "book"
   },
   {
     id: 2,
@@ -35,7 +36,8 @@ const BOOKS = [
     published: "May 1st 2010",
     publisher: "Orbit",
     coverUrl: "2-min.jpg",
-    price: 10
+    price: 10,
+    type: "book"
   },
   {
     id: 3,
@@ -48,7 +50,8 @@ const BOOKS = [
     published: "September 14th 2010",
     publisher: "Simon & Schuster Books For Young Readers",
     coverUrl: "3-min.jpg",
-    price: 20
+    price: 20,
+    type: "book"
   },
   {
     id: 4,
@@ -66,7 +69,8 @@ const BOOKS = [
     published: "September 1st 2004",
     publisher: "Mariner Books",
     coverUrl: "4-min.jpg",
-    price: 10
+    price: 10,
+    type: "book"
   },
   {
     id: 5,
@@ -78,7 +82,8 @@ const BOOKS = [
     published: "August 29th 2006",
     publisher: "Seal Books",
     coverUrl: "5-min.jpg",
-    price: 30
+    price: 30,
+    type: "book"
   },
   {
     id: 6,
@@ -92,7 +97,8 @@ const BOOKS = [
     published: "May 18th 2004",
     publisher: "Vintage",
     coverUrl: "6-min.jpg",
-    price: 24
+    price: 24,
+    type: "book"
   },
   {
     id: 7,
@@ -104,7 +110,8 @@ const BOOKS = [
     published: "October 4th 2005",
     publisher: "Harper Perennial Modern Classics",
     coverUrl: "7-min.jpg",
-    price: 24.5
+    price: 24.5,
+    type: "book"
   },
   {
     id: 8,
@@ -118,7 +125,8 @@ const BOOKS = [
     published: "November 18th 2003",
     publisher: "Vintage",
     coverUrl: "8-min.jpg",
-    price: 4.75
+    price: 4.75,
+    type: "book"
   },
 ];
 
@@ -131,7 +139,8 @@ const SOUVENIRS = [
     `,
     manufacturer: "Harrods",
     coverUrl: "1-min.jpg",
-    price: 40
+    price: 40,
+    type: "souvenir"
   },
   {
     id: 10,
@@ -141,7 +150,8 @@ const SOUVENIRS = [
     `,
     manufacturer: "Harrods",
     coverUrl: "2-min.jpg",
-    price: 80
+    price: 80,
+    type: "souvenir"
   },
   {
     id: 11,
@@ -151,7 +161,8 @@ const SOUVENIRS = [
     `,
     manufacturer: "Harrods",
     coverUrl: "2-min.jpg",
-    price: 30
+    price: 30,
+    type: "souvenir"
   },
 ];
 
