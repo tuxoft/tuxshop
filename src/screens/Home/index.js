@@ -3,6 +3,7 @@ import queryString from "query-string";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import Screen from "../../components/Screen";
+import ScreenName from "../../components/ScreenName";
 import Topbar from "../../components/Topbar";
 import Content from "../../components/Content";
 import Sidebar from "../../components/Sidebar";
@@ -22,6 +23,11 @@ class HomeScreen extends Component {
           <Sidebar />
 
           <Main>
+            <ScreenName>
+              {this.props.booksQuery && "Books"}
+              {this.props.souvenirsQuery && "Souvenirs"}
+            </ScreenName>
+
             <Grid.Grid>
               {
                 this.props.booksQuery &&

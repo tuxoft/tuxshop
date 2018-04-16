@@ -26,6 +26,9 @@ export const Nav = styled.nav`
 `;
 
 export const NavItem = styled(props => <Link {...props} />)`
+  color: #000;
+  text-decoration: none;
+
   &:not(:last-child) {
     margin-right: 1rem;
   }
