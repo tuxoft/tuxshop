@@ -19,6 +19,7 @@ const BOOKS = [
     publisher: "Tor Books",
     coverUrl: "1-min.jpg",
     price: 12,
+    quantity: 10,
     type: "book"
   },
   {
@@ -37,6 +38,7 @@ const BOOKS = [
     publisher: "Orbit",
     coverUrl: "2-min.jpg",
     price: 10,
+    quantity: 1,
     type: "book"
   },
   {
@@ -51,6 +53,7 @@ const BOOKS = [
     publisher: "Simon & Schuster Books For Young Readers",
     coverUrl: "3-min.jpg",
     price: 20,
+    quantity: 5,
     type: "book"
   },
   {
@@ -70,6 +73,7 @@ const BOOKS = [
     publisher: "Mariner Books",
     coverUrl: "4-min.jpg",
     price: 10,
+    quantity: 12,
     type: "book"
   },
   {
@@ -83,6 +87,7 @@ const BOOKS = [
     publisher: "Seal Books",
     coverUrl: "5-min.jpg",
     price: 30,
+    quantity: 30,
     type: "book"
   },
   {
@@ -98,6 +103,7 @@ const BOOKS = [
     publisher: "Vintage",
     coverUrl: "6-min.jpg",
     price: 24,
+    quantity: 2,
     type: "book"
   },
   {
@@ -111,6 +117,7 @@ const BOOKS = [
     publisher: "Harper Perennial Modern Classics",
     coverUrl: "7-min.jpg",
     price: 24.5,
+    quantity: 11,
     type: "book"
   },
   {
@@ -126,6 +133,7 @@ const BOOKS = [
     publisher: "Vintage",
     coverUrl: "8-min.jpg",
     price: 4.75,
+    quantity: 0,
     type: "book"
   },
 ];
@@ -140,6 +148,7 @@ const SOUVENIRS = [
     manufacturer: "Harrods",
     coverUrl: "1-min.jpg",
     price: 40,
+    quantity: 5,
     type: "souvenir"
   },
   {
@@ -151,6 +160,7 @@ const SOUVENIRS = [
     manufacturer: "Harrods",
     coverUrl: "2-min.jpg",
     price: 80,
+    quantity: 6,
     type: "souvenir"
   },
   {
@@ -162,6 +172,7 @@ const SOUVENIRS = [
     manufacturer: "Harrods",
     coverUrl: "2-min.jpg",
     price: 30,
+    quantity: 0,
     type: "souvenir"
   },
 ];
