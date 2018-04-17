@@ -7,12 +7,12 @@ const schema = require("./schema");
 
 const GRAPHQL_PORT = 4000;
 
-const graphqlServer = express();
+const app = express();
 
 // Middlewares
-graphqlServer.use(compression());
+app.use(compression());
 
-graphqlServer.use("/graphql", (req, res, next) => {
+app.use("/graphql", (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -26,7 +26,7 @@ graphqlServer.use("/graphql", (req, res, next) => {
   }
 });
 
-graphqlServer.use(
+app.use(
   "/graphql",
   bodyParser.json(),
   graphqlExpress({
@@ -35,9 +35,9 @@ graphqlServer.use(
   }),
 );
 
-graphqlServer.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
-graphqlServer.listen(GRAPHQL_PORT, () =>
+app.listen(GRAPHQL_PORT, () =>
   console.log(
     `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`,
   ),
