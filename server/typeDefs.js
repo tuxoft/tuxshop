@@ -1,6 +1,6 @@
 const typeDefs = `
   type Book {
-    id: Int!,
+    id: String!,
     title: String!
     author: String!
     description: String
@@ -11,7 +11,7 @@ const typeDefs = `
   }
 
   type Souvenir {
-    id: Int!
+    id: String!
     title: String!
     manufacturer: String
     coverUrl: String
@@ -19,7 +19,9 @@ const typeDefs = `
   }
 
   type Query {
+    book: Book,
     books: [Book],
+    souvenir: Souvenir,
     souvenirs: [Souvenir]
   }
 `;

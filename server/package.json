@@ -9,9 +9,14 @@
     "compression": "^1.7.2",
     "express": "^4.16.3",
     "graphql-tools": "^2.24.0",
-    "helmet": "^3.12.0"
+    "helmet": "^3.12.0",
+    "rethinkdb-migrate": "^1.3.0",
+    "rethinkdbdash": "^2.3.31"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1"
+  },
+  "scripts": {
+    "migrate": "rethinkdb-migrate up -f ./migrations/config.js"
   }
 }
