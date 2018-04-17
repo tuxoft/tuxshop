@@ -2,6 +2,7 @@ const express = require("express");
 const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const bodyParser = require("body-parser");
 const compression = require("compression");
+const helmet = require("helmet");
 
 const schema = require("./schema");
 
@@ -11,6 +12,7 @@ const app = express();
 
 // Middlewares
 app.use(compression());
+app.use(helmet());
 
 app.use("/graphql", (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
