@@ -23,8 +23,16 @@ const getAvailableBooks = () => {
     .run();
 };
 
+const storeBook = (book) => {
+  return db
+    .table("books")
+    .insert(book)
+    .run();
+};
+
 module.exports = {
   getBookById: getBookById,
   getBooks: getBooks,
-  getAvailableBooks: getAvailableBooks
+  getAvailableBooks: getAvailableBooks,
+  storeBook: storeBook
 };

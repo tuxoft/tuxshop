@@ -1,6 +1,5 @@
 const {
-  makeExecutableSchema,
-  addMockFunctionsToSchema,
+  makeExecutableSchema
 } = require("graphql-tools");
 
 const typeDefs = require("./typeDefs");
