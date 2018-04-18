@@ -1,7 +1,7 @@
 // const mocks = require("./mocks");
 const { getBooks, getAvailableBooks, getBookById, saveBook, updateBook } = require("./models/book");
 const { getAvailableSouvenirs, getSouvenirById } = require("./models/souvenir");
-const { getOrders, getOrderById } = require("./models/order");
+const { getOrders, getOrderById, saveOrder, updateOrder } = require("./models/order");
 
 const resolvers = {
   Query: {
@@ -61,13 +61,31 @@ const resolvers = {
             });
         });
     },
-    updateBook(_, { book }) {
-      return updateBook(book)
+    updateBook(_, { id, book }) {
+      return updateBook(id, book)
+        .then(result => {
+          return getBookById(id)
+            .then(result => {
+              return result;
+            });
+        });
+    },
+    addOrder(_, { order }) {
+      return saveOrder(order)
         .then(result => {
           // Get generated key from rethinkdb
           const id = result.generated_keys[0];
 
-          return getBookById(id)
+          return getOrderById(id)
+            .then(result => {
+              return result;
+            });
+        });
+    },
+    updateOrder(_, { id, order }) {
+      return updateOrder(id, order)
+        .then(result => {
+          return getOrderById(id)
             .then(result => {
               return result;
             });

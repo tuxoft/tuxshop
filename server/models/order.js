@@ -16,15 +16,24 @@ const getOrders = () => {
     .run();
 };
 
-const storeOrder = (order) => {
+const saveOrder = (order) => {
   return db
     .table("orders")
     .insert(order)
     .run();
 };
 
+const updateOrder = (id, order) => {
+  return db
+    .table("orders")
+    .get(id)
+    .update(order)
+    .run();
+};
+
 module.exports = {
   getOrderById: getOrderById,
   getOrders: getOrders,
-  storeOrder: storeOrder
+  saveOrder: saveOrder,
+  updateOrder: updateOrder
 };

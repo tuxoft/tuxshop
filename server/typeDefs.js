@@ -48,9 +48,18 @@ const typeDefs = `
     quantity: Int!
   }
 
+  input OrderInput {
+    products: [String]!
+    status: String!
+    paid: Boolean!
+    total: Float!
+  }
+
   type Mutation {
     addBook(book: BookInput): Book,
-    updateBook(book: BookInput): Book
+    updateBook(id: String!, book: BookInput): Book
+    addOrder(order: OrderInput): Order
+    updateOrder(id: String!, order: OrderInput): Order
   }
 `;
 

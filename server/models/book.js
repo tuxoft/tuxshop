@@ -30,10 +30,10 @@ const saveBook = (book) => {
     .run();
 };
 
-const updateBook = (book) => {
+const updateBook = (id, book) => {
   return db
     .table("books")
-    .get(book.id)
+    .get(id)
     .update(book)
     .run();
 };
