@@ -6,7 +6,7 @@ import * as styles from "./styles";
 
 const CartConsumer = CartContext.Consumer;
 
-const CartList = (props) => (
+const CartList = ({ inCheckout }) => (
   <CartConsumer>
     {({ cart, removeFromCart }) => (
       <styles.CartList>
@@ -17,12 +17,19 @@ const CartList = (props) => (
         }
 
         {
+          inCheckout &&
+          cart.products.length > 0 && (
+            <styles.Title>Your order</styles.Title>
+          )
+        }
+
+        {
           cart.products.length > 0 && (
             <List.List>
               {
                 cart.products.map(product =>
                   <List.ListItem key={product.id}>
-                    <CartProduct product={product} removeFromCart={removeFromCart} />
+                    <CartProduct product={product} removeFromCart={removeFromCart} inCheckout={inCheckout} />
                   </List.ListItem>
                 )
               }
@@ -37,7 +44,9 @@ const CartList = (props) => (
         }
 
         {
-          cart.products.length > 0 && (
+          (
+            !inCheckout &&
+            cart.products.length > 0) && (
             <styles.CheckoutLink to="/checkout">Go to Checkout</styles.CheckoutLink>
           )
         }

@@ -6,6 +6,10 @@ export const CartList = styled.div``;
 
 export const EmptyCart = styled.p``;
 
+export const Title = styled.h3`
+  margin: 0 0 1rem 0;
+`;
+
 export const Total = styled.h4``;
 
 export const CheckoutLink = styled(props => <Link {...props} />)`
