@@ -11,4 +11,11 @@ export const Total = styled.h4``;
 export const CheckoutLink = styled(props => <Link {...props} />)`
   text-decoration: none;
   color: #000;
+  padding: 1rem;
+  border: 1px solid #f1f1f1;
+  background-color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: inline-block;
 `;

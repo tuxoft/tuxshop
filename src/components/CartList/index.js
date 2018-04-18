@@ -38,7 +38,7 @@ const CartList = (props) => (
 
         {
           cart.products.length > 0 && (
-            <styles.CheckoutLink to="/checkout">Checkout</styles.CheckoutLink>
+            <styles.CheckoutLink to="/checkout">Go to Checkout</styles.CheckoutLink>
           )
         }
       </styles.CartList>
