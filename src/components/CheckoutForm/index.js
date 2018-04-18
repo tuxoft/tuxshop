@@ -48,7 +48,7 @@ class CheckoutForm extends Component {
     }
 
     const order = {
-      products: ["f8a0fd53-aceb-434d-b07d-493a5d1430a6", "35719f91-bf56-42de-aa7a-dba7207f46d6", "129289da-f8e6-4dc5-9374-8152418c68fa"],
+      products: this.props.cart.products.map(product => product.id),
       status: "initialized",
       paid: "waiting",
       total: 100.0

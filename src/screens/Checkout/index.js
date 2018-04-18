@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { CartContext } from "../../lib/Cart";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import Screen from "../../components/Screen";
@@ -9,6 +10,8 @@ import Sidebar from "../../components/Sidebar";
 import Main from "../../components/Main";
 import CheckoutForm from "../../components/CheckoutForm";
 import Footer from "../../components/Footer";
+
+const CartConsumer = CartContext.Consumer;
 
 class CheckoutScreen extends Component {
   render() {
@@ -24,7 +27,9 @@ class CheckoutScreen extends Component {
               Checkout
             </ScreenName>
 
-            <CheckoutForm checkout={this.props.createOrder} />
+            <CartConsumer>
+              {({ cart }) => <CheckoutForm cart={cart} checkout={this.props.createOrder} />}
+            </CartConsumer>
           </Main>
         </Content>
 
