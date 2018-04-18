@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ButtonComponent from "../Button";
 
 export const CartProduct = styled.div`
   display: flex;
@@ -23,15 +24,6 @@ export const Title = styled.h4`
 
 export const Price = styled.span``;
 
-const Button = styled.button.attrs({ type: "button" })`
-  padding: 1rem;
-  border: 1px solid #f1f1f1;
-  background-color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  margin: auto 0;
-`;
-
-export const RemoveFromCart = styled(Button)`
+export const RemoveFromCart = styled(ButtonComponent)`
   margin-left: auto;
 `;

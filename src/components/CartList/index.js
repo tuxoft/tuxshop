@@ -35,6 +35,12 @@ const CartList = (props) => (
             <styles.Total>Total: ${cart.total}</styles.Total>
           )
         }
+
+        {
+          cart.products.length > 0 && (
+            <styles.CheckoutLink to="/checkout">Checkout</styles.CheckoutLink>
+          )
+        }
       </styles.CartList>
     )}
   </CartConsumer>

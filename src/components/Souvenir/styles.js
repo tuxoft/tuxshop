@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ButtonComponent from "../Button";
 
 export const Souvenir = styled.div`
   display: flex;
@@ -31,17 +32,11 @@ export const Manufacturer = styled.h4`
   margin: 0 0 1rem 0;
 `;
 
-export const Price = styled.span``;
-
-const Button = styled.button.attrs({ type: "button" })`
-  margin-top: 1rem;
-  padding: 1rem;
-  border: 1px solid #f1f1f1;
-  background-color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
+export const Price = styled.span`
+  display: inline-block;
+  margin-bottom: 1rem;
 `;
 
-export const AddToCart = styled(Button)``;
+export const AddToCart = styled(ButtonComponent)``;
 
-export const RemoveFromCart = styled(Button)``;
+export const RemoveFromCart = styled(ButtonComponent)``;
