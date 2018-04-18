@@ -1,66 +1,26 @@
-const typeDefs = `
-  type Book {
-    id: ID!,
-    title: String!
-    author: String!
-    description: String
-    published: String
-    publisher: String
-    coverUrl: String
-    price: Float!
-    quantity: Int!
-  }
+const Book = require("./types/Book");
+const Souvenir = require("./types/Souvenir");
+const Order = require("./types/Order");
 
-  type Souvenir {
-    id: ID!
-    title: String!
-    manufacturer: String
-    coverUrl: String
-    price: Float!
-  }
-
-  type Order {
-    id: ID!
-    products: [String]!
-    status: String!
-    paid: Boolean!
-    total: Float!
-  }
-
+const Root = `
   type Query {
-    book: Book,
-    books: [Book],
-    availableBooks: [Book],
-    souvenir: Souvenir,
-    souvenirs: [Souvenir],
-    order: Order,
-    orders: [Order]
-  }
-
-  input BookInput {
-    title: String!
-    author: String!
-    description: String
-    published: String
-    publisher: String
-    coverUrl: String
-    price: Float!
-    quantity: Int!
-  }
-
-  input OrderInput {
-    products: [String]!
-    status: String!
-    paid: Boolean!
-    total: Float!
+    dummy: String
   }
 
   type Mutation {
-    addBook(book: BookInput): Book,
-    updateBook(id: String!, book: BookInput): Book
-    addOrder(order: OrderInput): Order
-    updateOrder(id: String!, order: OrderInput): Order
+    dummy: String
+  }
+
+  type Subscription {
+    dummy: String
   }
 `;
+
+const typeDefs = [
+  Root,
+  Book,
+  Souvenir,
+  Order
+];
 
 module.exports = typeDefs;
