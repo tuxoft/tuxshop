@@ -8,9 +8,8 @@ import Topbar from "../../components/Topbar";
 import Content from "../../components/Content";
 import Sidebar from "../../components/Sidebar";
 import Main from "../../components/Main";
-import * as Grid from "../../components/Grid";
-import Book from "../../components/Book";
-import Souvenir from "../../components/Souvenir";
+import BooksCollection from "../../components/BooksCollection";
+import SouvenirsCollection from "../../components/SouvenirsCollection";
 import Footer from "../../components/Footer";
 
 class HomeScreen extends Component {
@@ -28,25 +27,15 @@ class HomeScreen extends Component {
               {this.props.souvenirsQuery && "Souvenirs"}
             </ScreenName>
 
-            <Grid.Grid>
-              {
-                this.props.booksQuery &&
-                this.props.booksQuery.books &&
-                this.props.booksQuery.books.map(book => (
-                  <Grid.GridItem key={book.id}>
-                    <Book book={book} />
-                  </Grid.GridItem>
-                ))}
+            {
+              this.props.booksQuery &&
+              <BooksCollection books={this.props.booksQuery.books} />
+            }
 
-              {
-                this.props.souvenirsQuery &&
-                this.props.souvenirsQuery.souvenirs &&
-                this.props.souvenirsQuery.souvenirs.map(souvenir => (
-                  <Grid.GridItem key={souvenir.id}>
-                    <Souvenir souvenir={souvenir} />
-                  </Grid.GridItem>
-                ))}
-            </Grid.Grid>
+            {
+              this.props.souvenirsQuery &&
+              <SouvenirsCollection souvenirs={this.props.souvenirsQuery.souvenirs} />
+            }
           </Main>
         </Content>
 
