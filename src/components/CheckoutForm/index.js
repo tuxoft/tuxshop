@@ -11,16 +11,16 @@ class CheckoutForm extends Component {
       country: "",
       address: "",
       city: "",
-      zipcode: ""
-    }
+      zipcode: "",
+    },
   };
 
-  handleShippingInputChange = (e) => {
+  handleShippingInputChange = e => {
     this.setState({
       shipping: {
         ...this.state.shipping,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
@@ -40,7 +40,7 @@ class CheckoutForm extends Component {
     return true;
   };
 
-  handleShippingSubmit = (e) => {
+  handleShippingSubmit = e => {
     e.preventDefault();
 
     if (!this.isShippingValid()) {
@@ -51,14 +51,10 @@ class CheckoutForm extends Component {
       products: this.props.cart.products.map(product => product.id),
       status: "initialized",
       paid: "waiting",
-      total: 100.0
+      total: 100.0,
     };
 
-    this.props.checkout({
-      variables: {
-        order
-      }
-    });
+    this.props.checkout(order);
   };
 
   render() {
@@ -67,13 +63,14 @@ class CheckoutForm extends Component {
         <styles.Block>
           <CartList inCheckout />
         </styles.Block>
-        
+
         <styles.Block>
           <ShippingForm
             shipping={this.state.shipping}
             isValid={this.isShippingValid()}
             handleInputChange={this.handleShippingInputChange}
-            handleSubmit={this.handleShippingSubmit} />
+            handleSubmit={this.handleShippingSubmit}
+          />
         </styles.Block>
       </styles.CheckoutForm>
     );

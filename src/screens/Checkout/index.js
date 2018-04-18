@@ -14,6 +14,19 @@ import Footer from "../../components/Footer";
 const CartConsumer = CartContext.Consumer;
 
 class CheckoutScreen extends Component {
+  checkout = (order) => {
+    const { createOrder } = this.props;
+
+    createOrder({
+      variables: {
+        order
+      }
+    })
+    .then(res => {
+      console.log(res);
+    });
+  };
+
   render() {
     return (
       <Screen>
@@ -28,7 +41,7 @@ class CheckoutScreen extends Component {
             </ScreenName>
 
             <CartConsumer>
-              {({ cart }) => <CheckoutForm cart={cart} checkout={this.props.createOrder} />}
+              {({ cart }) => <CheckoutForm cart={cart} checkout={this.checkout} />}
             </CartConsumer>
           </Main>
         </Content>
