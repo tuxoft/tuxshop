@@ -1,5 +1,5 @@
 // const mocks = require("./mocks");
-const { getAvailableBooks, getBookById, storeBook } = require("./models/book");
+const { getBooks, getAvailableBooks, getBookById, saveBook, updateBook } = require("./models/book");
 const { getAvailableSouvenirs, getSouvenirById } = require("./models/souvenir");
 const { getOrders, getOrderById } = require("./models/order");
 
@@ -12,6 +12,12 @@ const resolvers = {
         });
     },
     books() {
+      return getBooks()
+        .then(result => {
+          return result;
+        });
+    },
+    availableBooks() {
       return getAvailableBooks()
         .then(result => {
           return result;
@@ -44,7 +50,19 @@ const resolvers = {
   },
   Mutation: {
     addBook(_, { book }) {
-      return storeBook(book)
+      return saveBook(book)
+        .then(result => {
+          // Get generated key from rethinkdb
+          const id = result.generated_keys[0];
+
+          return getBookById(id)
+            .then(result => {
+              return result;
+            });
+        });
+    },
+    updateBook(_, { book }) {
+      return updateBook(book)
         .then(result => {
           // Get generated key from rethinkdb
           const id = result.generated_keys[0];

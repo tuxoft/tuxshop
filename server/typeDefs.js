@@ -8,6 +8,7 @@ const typeDefs = `
     publisher: String
     coverUrl: String
     price: Float!
+    quantity: Int!
   }
 
   type Souvenir {
@@ -29,6 +30,7 @@ const typeDefs = `
   type Query {
     book: Book,
     books: [Book],
+    availableBooks: [Book],
     souvenir: Souvenir,
     souvenirs: [Souvenir],
     order: Order,
@@ -43,10 +45,12 @@ const typeDefs = `
     publisher: String
     coverUrl: String
     price: Float!
+    quantity: Int!
   }
 
   type Mutation {
-    addBook(book: BookInput): Book
+    addBook(book: BookInput): Book,
+    updateBook(book: BookInput): Book
   }
 `;
 
