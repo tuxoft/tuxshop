@@ -25,16 +25,17 @@ class CheckoutForm extends Component {
   };
 
   isShippingValid = () => {
-    const { shipping } = this.state;
+    // TODO: Uncomment
+    // const { shipping } = this.state;
 
-    if (!shipping.email ||
-      !shipping.fullName ||
-      !shipping.country ||
-      !shipping.address ||
-      !shipping.city ||
-      !shipping.zipcode) {
-      return false;
-    }
+    // if (!shipping.email ||
+    //   !shipping.fullName ||
+    //   !shipping.country ||
+    //   !shipping.address ||
+    //   !shipping.city ||
+    //   !shipping.zipcode) {
+    //   return false;
+    // }
 
     return true;
   };
@@ -45,6 +46,19 @@ class CheckoutForm extends Component {
     if (!this.isShippingValid()) {
       return false;
     }
+
+    const order = {
+      products: ["f8a0fd53-aceb-434d-b07d-493a5d1430a6", "35719f91-bf56-42de-aa7a-dba7207f46d6", "129289da-f8e6-4dc5-9374-8152418c68fa"],
+      status: "initialized",
+      paid: "waiting",
+      total: 100.0
+    };
+
+    this.props.checkout({
+      variables: {
+        order
+      }
+    });
   };
 
   render() {

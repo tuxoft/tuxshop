@@ -29,7 +29,7 @@ class HomeScreen extends Component {
 
             {
               this.props.booksQuery &&
-              <BooksCollection books={this.props.booksQuery.books} />
+              <BooksCollection books={this.props.booksQuery.availableBooks} />
             }
 
             {
@@ -47,7 +47,7 @@ class HomeScreen extends Component {
 
 const BOOKS_QUERY = gql`
   query BooksQuery {
-    books {
+    availableBooks {
       id
       title
       author

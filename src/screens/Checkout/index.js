@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { graphql, compose } from "react-apollo";
+import gql from "graphql-tag";
 import Screen from "../../components/Screen";
 import ScreenName from "../../components/ScreenName";
 import Topbar from "../../components/Topbar";
@@ -22,7 +24,7 @@ class CheckoutScreen extends Component {
               Checkout
             </ScreenName>
 
-            <CheckoutForm />
+            <CheckoutForm checkout={this.props.createOrder} />
           </Main>
         </Content>
 
@@ -32,4 +34,14 @@ class CheckoutScreen extends Component {
   }
 }
 
-export default CheckoutScreen;
+const CREATE_ORDER_QUERY = gql`
+  mutation CreateOrder($order: OrderInput) {
+    addOrder(order: $order) {
+      id
+    }
+  }
+`;
+
+export default compose(
+  graphql(CREATE_ORDER_QUERY, { name: "createOrder" })
+)(CheckoutScreen);

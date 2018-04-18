@@ -37,7 +37,7 @@ const ShippingForm = ({ shipping, isValid, handleInputChange, handleSubmit }) =>
       </styles.FormGroup>
 
       <styles.FormGroup>
-        <styles.SubmitButton disabled={!isValid}>
+        <styles.SubmitButton disabled={!isValid} onClick={handleSubmit}>
           Purchase
         </styles.SubmitButton>
       </styles.FormGroup>
