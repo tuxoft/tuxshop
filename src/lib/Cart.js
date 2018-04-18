@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as storage from "./localStorage";
 
 export const CartContext = React.createContext("cart");
 
@@ -16,6 +17,8 @@ export class CartProvider extends Component {
           product
         ])
       }
+    }, () => {
+      storage.store("cart", this.state.cart);
     });
   };
 
@@ -38,6 +41,8 @@ export class CartProvider extends Component {
           ...this.state.cart.products.slice(productIdx + 1)
         ])
       }
+    }, () => {
+      storage.store("cart", this.state.cart);
     });
   };
 
@@ -53,7 +58,7 @@ export class CartProvider extends Component {
   };
 
   state = {
-    cart: {
+    cart: storage.load("cart") || {
       products: []
     },
     addToCart: this.addToCart,
