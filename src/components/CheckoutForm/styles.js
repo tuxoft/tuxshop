@@ -3,11 +3,6 @@ import styled from "styled-components";
 export const CheckoutForm = styled.div`
   display: flex;
   flex-direction: column;
-
-  // Desktop
-  @media (min-width: 1200px) {
-    flex-direction: row;
-  }
 `;
 
 export const Block = styled.div`

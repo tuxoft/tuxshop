@@ -51,15 +51,15 @@ class CheckoutForm extends Component {
     return (
       <styles.CheckoutForm>
         <styles.Block>
+          <CartList inCheckout />
+        </styles.Block>
+        
+        <styles.Block>
           <ShippingForm
             shipping={this.state.shipping}
             isValid={this.isShippingValid()}
             handleInputChange={this.handleShippingInputChange}
             handleSubmit={this.handleShippingSubmit} />
-        </styles.Block>
-
-        <styles.Block>
-          <CartList inCheckout />
         </styles.Block>
       </styles.CheckoutForm>
     );

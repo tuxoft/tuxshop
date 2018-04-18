@@ -18,11 +18,6 @@ export const FormGroup = styled.div`
   
   // Desktop
   @media (min-width: 1200px) {
-    width: 80%;
-  }
-
-  // Large
-  @media (min-width: 1800px) {
     width: 50%;
   }
 
