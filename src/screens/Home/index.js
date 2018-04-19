@@ -45,7 +45,7 @@ class HomeScreen extends Component {
   }
 }
 
-const BOOKS_QUERY = gql`
+const getAvailableBooks = gql`
   query BooksQuery {
     availableBooks {
       id
@@ -56,7 +56,7 @@ const BOOKS_QUERY = gql`
   }
 `;
 
-const SOUVENIRS_QUERY = gql`
+const getAvailableSouvenirs = gql`
   query SouvenirsQuery {
     availableSouvenirs {
       id
@@ -68,6 +68,6 @@ const SOUVENIRS_QUERY = gql`
 `;
 
 export default compose(
-  graphql(BOOKS_QUERY, { name: "booksQuery", skip: ({ location }) => queryString.parse(location.search).category === "souvenirs" }),
-  graphql(SOUVENIRS_QUERY, { name: "souvenirsQuery", skip: ({ location }) => queryString.parse(location.search).category !== "souvenirs" })
+  graphql(getAvailableBooks, { name: "booksQuery", skip: ({ location }) => queryString.parse(location.search).category === "souvenirs" }),
+  graphql(getAvailableSouvenirs, { name: "souvenirsQuery", skip: ({ location }) => queryString.parse(location.search).category !== "souvenirs" })
 )(HomeScreen);

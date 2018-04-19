@@ -7,4 +7,9 @@ export const Button = styled.button.attrs({ type: "button" })`
   font-size: 1rem;
   cursor: pointer;
   margin: auto 0;
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
 `;

@@ -49,9 +49,8 @@ class CheckoutForm extends Component {
 
     const order = {
       products: this.props.cart.products.map(product => product.id),
-      status: "initialized",
-      paid: "waiting",
-      total: 100.0,
+      amount: this.props.cart.products.reduce((amount, product) => amount + product.price, 0),
+      email: this.state.shipping.email
     };
 
     this.props.checkout(order);
@@ -66,6 +65,8 @@ class CheckoutForm extends Component {
 
         <styles.Block>
           <ShippingForm
+            order={this.props.order}
+            orderId={this.props.orderId}
             shipping={this.state.shipping}
             isValid={this.isShippingValid()}
             handleInputChange={this.handleShippingInputChange}

@@ -2,16 +2,16 @@ const Order = `
   type Order {
     id: ID!
     products: [String]!
-    status: String!
-    paid: Boolean!
-    total: Float!
+    status: String
+    amount: Float!
+    email: String!
+    requestId: String
   }
 
   input OrderInput {
     products: [String]!
-    status: String!
-    paid: Boolean!
-    total: Float!
+    amount: Float!
+    email: String!
   }
 
   extend type Query {

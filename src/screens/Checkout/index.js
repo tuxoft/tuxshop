@@ -14,6 +14,12 @@ import Footer from "../../components/Footer";
 const CartConsumer = CartContext.Consumer;
 
 class CheckoutScreen extends Component {
+  state = {
+    order: null,
+    orderId: null,
+    errors: []
+  };
+
   checkout = (order) => {
     const { createOrder } = this.props;
 
@@ -22,8 +28,20 @@ class CheckoutScreen extends Component {
         order
       }
     })
-      .then(res => {
-        console.log(res);
+      .then(storedOrder => {
+        console.log(storedOrder);
+
+        if (storedOrder.data) {
+          this.setState({
+            order: storedOrder.data.addOrder,
+            orderId: storedOrder.data.addOrder.id
+          });
+        }
+        else {
+          this.setState({
+            errors: storedOrder.errors
+          });
+        }
       });
   };
 
@@ -41,7 +59,7 @@ class CheckoutScreen extends Component {
             </ScreenName>
 
             <CartConsumer>
-              {({ cart }) => <CheckoutForm cart={cart} checkout={this.checkout} />}
+              {({ cart }) => <CheckoutForm cart={cart} checkout={this.checkout} order={this.state.order} orderId={this.state.orderId} />}
             </CartConsumer>
           </Main>
         </Content>
@@ -52,14 +70,20 @@ class CheckoutScreen extends Component {
   }
 }
 
-const CREATE_ORDER_QUERY = gql`
+const createOrder = gql`
   mutation CreateOrder($order: OrderInput) {
     addOrder(order: $order) {
       id
+      products
+      status
+      amount
+      email
+      requestId
     }
   }
 `;
 
 export default compose(
-  graphql(CREATE_ORDER_QUERY, { name: "createOrder" })
+  graphql(createOrder, { name: "createOrder" }),
+  // graphql(getOrder, { name: "getOrder" })
 )(CheckoutScreen);
