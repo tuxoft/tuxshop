@@ -34,7 +34,7 @@ class HomeScreen extends Component {
 
             {
               this.props.souvenirsQuery &&
-              <SouvenirsCollection souvenirs={this.props.souvenirsQuery.souvenirs} />
+              <SouvenirsCollection souvenirs={this.props.souvenirsQuery.availableSouvenirs} />
             }
           </Main>
         </Content>
@@ -58,7 +58,7 @@ const BOOKS_QUERY = gql`
 
 const SOUVENIRS_QUERY = gql`
   query SouvenirsQuery {
-    souvenirs {
+    availableSouvenirs {
       id
       title
       manufacturer
