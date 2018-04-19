@@ -23,7 +23,7 @@ const Book = `
   }
 
   extend type Query {
-    book: Book,
+    book(id: ID!): Book,
     books: [Book],
     availableBooks: [Book],
   }

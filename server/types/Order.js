@@ -15,7 +15,7 @@ const Order = `
   }
 
   extend type Query {
-    order: Order,
+    order(id: ID!): Order,
     orders: [Order]
   }
 

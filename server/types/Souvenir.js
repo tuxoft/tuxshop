@@ -8,8 +8,9 @@ const Souvenir = `
   }
 
   extend type Query {
-    souvenir: Souvenir,
+    souvenir(id: ID!): Souvenir,
     souvenirs: [Souvenir],
+    availableSouvenirs: [Souvenir],
   }
 `;
 
