@@ -22,9 +22,9 @@ class CheckoutScreen extends Component {
         order
       }
     })
-    .then(res => {
-      console.log(res);
-    });
+      .then(res => {
+        console.log(res);
+      });
   };
 
   render() {
