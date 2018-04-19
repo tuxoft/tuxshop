@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { graphql, compose } from "react-apollo";
+import gql from "graphql-tag";
 import ShippingForm from "../ShippingForm";
 import CartList from "../CartList";
 import * as styles from "./styles";
@@ -53,7 +55,13 @@ class CheckoutForm extends Component {
       email: this.state.shipping.email
     };
 
-    this.props.checkout(order);
+    const { createOrder } = this.props;
+
+    createOrder({
+      variables: {
+        order,
+      },
+    });
   };
 
   render() {
@@ -66,7 +74,6 @@ class CheckoutForm extends Component {
         <styles.Block>
           <ShippingForm
             order={this.props.order}
-            orderId={this.props.orderId}
             shipping={this.state.shipping}
             isValid={this.isShippingValid()}
             handleInputChange={this.handleShippingInputChange}
@@ -78,4 +85,32 @@ class CheckoutForm extends Component {
   }
 }
 
-export default CheckoutForm;
+const createOrder = gql`
+  mutation CreateOrder($order: OrderInput) {
+    addOrder(order: $order) {
+      id
+      products
+      status
+      amount
+      email
+      requestId
+    }
+  }
+`;
+
+// const getOrder = gql`
+//   query GetOrder($id: ID!) {
+//     order(id: $id) {
+//       id
+//       products
+//       status
+//       amount
+//       email
+//       requestId
+//     }
+//   }
+// `;
+
+export default compose(
+  graphql(createOrder, { name: "createOrder" })
+)(CheckoutForm);

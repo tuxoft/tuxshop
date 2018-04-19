@@ -1,9 +1,7 @@
 import React from "react";
-import { graphql, compose } from "react-apollo";
-import gql from "graphql-tag";
 import * as styles from "./styles";
 
-const ShippingForm = ({ order, orderId, shipping, isValid, handleInputChange, handleSubmit }) => (
+const ShippingForm = ({ order, shipping, isValid, handleInputChange, handleSubmit }) => (
   <styles.ShippingForm onSubmit={handleSubmit}>
     <styles.Title>Shipping Details</styles.Title>
 
@@ -50,19 +48,4 @@ const ShippingForm = ({ order, orderId, shipping, isValid, handleInputChange, ha
   </styles.ShippingForm>
 );
 
-const getOrder = gql`
-  query GetOrder($orderId: ID!) {
-    order(id: $orderId) {
-      id
-      products
-      status
-      amount
-      email
-      requestId
-    }
-  }
-`;
-
-export default compose(
-  graphql(getOrder, { name: "getPayment", skip: ({ order }) => !order })
-)(ShippingForm);
+export default ShippingForm;
