@@ -37,4 +37,4 @@ class Kassa {
   };
 }
 
-module.exports = Kassa;
+module.exports = new Kassa("kassa_token");
