@@ -1,6 +1,6 @@
-'use strict'
+"use strict";
 
-exports.up = function (r, connection) {
+exports.up = function(r, connection) {
   return Promise.all([
     r
       .tableCreate("orders")
@@ -10,9 +10,9 @@ exports.up = function (r, connection) {
         throw error;
       }),
   ]);
-}
+};
 
-exports.down = function (r, connection) {
+exports.down = function(r, connection) {
   return Promise.all([
     r
       .tableDrop("orders")
@@ -22,4 +22,4 @@ exports.down = function (r, connection) {
         throw error;
       }),
   ]);
-}
+};

@@ -1,16 +1,9 @@
-'use strict'
+"use strict";
 
-exports.up = function (r, connection) {
+exports.up = function(r, connection) {
   return Promise.all([
     r
-      .tableCreate("books")
-      .run(connection)
-      .catch(error => {
-        console.log(error);
-        throw error;
-      }),
-    r
-      .tableCreate("souvenirs")
+      .tableCreate("products")
       .run(connection)
       .catch(error => {
         console.log(error);
@@ -31,19 +24,12 @@ exports.up = function (r, connection) {
         throw error;
       }),
   ]);
-}
+};
 
-exports.down = function (r, connection) {
+exports.down = function(r, connection) {
   return Promise.all([
     r
-      .tableDrop("books")
-      .run(connection)
-      .catch(error => {
-        console.log(error);
-        throw error;
-      }),
-    r
-      .tableDrop("souvenirs")
+      .tableDrop("products")
       .run(connection)
       .catch(error => {
         console.log(error);
@@ -64,4 +50,4 @@ exports.down = function (r, connection) {
         throw error;
       }),
   ]);
-}
+};

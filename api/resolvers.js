@@ -1,21 +1,19 @@
-const { merge } = require('lodash');
+const { merge } = require("lodash");
 
-const BookQueries = require("./queries/Book");
-const SouvenirQueries = require("./queries/Souvenir");
+const ProductQueries = require("./queries/Product");
 const OrderQueries = require("./queries/Order");
 
-const BookMutations = require("./mutations/Book");
+const ProductMutations = require("./mutations/Product");
 const OrderMutations = require("./mutations/Order");
 
 const resolvers = merge(
   {},
   // Queries
-  BookQueries,
-  SouvenirQueries,
+  ProductQueries,
   OrderQueries,
   // Mutations
-  BookMutations,
-  OrderMutations
+  ProductMutations,
+  OrderMutations,
 );
 
 module.exports = resolvers;

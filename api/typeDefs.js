@@ -1,5 +1,4 @@
-const Book = require("./types/Book");
-const Souvenir = require("./types/Souvenir");
+const Product = require("./types/Product");
 const Order = require("./types/Order");
 
 const Root = `
@@ -16,11 +15,6 @@ const Root = `
   }
 `;
 
-const typeDefs = [
-  Root,
-  Book,
-  Souvenir,
-  Order
-];
+const typeDefs = [Root, Product, Order];
 
 module.exports = typeDefs;
