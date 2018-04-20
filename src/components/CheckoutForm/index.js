@@ -87,6 +87,12 @@ class CheckoutForm extends Component {
         order,
       },
     }).then(({ data }) => {
+      // Clean cart
+      // Products should be available from order
+      console.log(this.props.cart);
+
+      this.props.clearCart();
+
       // Redirect to payment
       window.location = data.addOrder.confirmationUrl;
     });

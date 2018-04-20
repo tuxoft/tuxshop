@@ -76,6 +76,7 @@ export class CartProvider extends Component {
     addToCart: this.addToCart,
     removeFromCart: this.removeFromCart,
     inCart: this.inCart,
+    clearCart: this.clearCart
   };
 
   render() {

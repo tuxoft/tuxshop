@@ -29,12 +29,12 @@ class HomeScreen extends Component {
 
             {
               this.props.booksQuery &&
-              <BooksCollection books={this.props.booksQuery.availableBooks} />
+              <BooksCollection books={this.props.booksQuery.availableProducts} />
             }
 
             {
               this.props.souvenirsQuery &&
-              <SouvenirsCollection souvenirs={this.props.souvenirsQuery.availableSouvenirs} />
+              <SouvenirsCollection souvenirs={this.props.souvenirsQuery.availableProducts} />
             }
           </Main>
         </Content>
@@ -47,7 +47,7 @@ class HomeScreen extends Component {
 
 const getAvailableBooks = gql`
   query BooksQuery {
-    availableBooks {
+    availableProducts(options: { type: "book" }) {
       id
       title
       author
@@ -58,10 +58,9 @@ const getAvailableBooks = gql`
 
 const getAvailableSouvenirs = gql`
   query SouvenirsQuery {
-    availableSouvenirs {
+    availableProducts(options: { type: "souvenir" }) {
       id
       title
-      manufacturer
       price
     }
   }
