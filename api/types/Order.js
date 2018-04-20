@@ -2,7 +2,7 @@ const Order = `
   type Order {
     id: ID!
     products: [String]!
-    status: String
+    status: String!
     amount: Float!
     email: String!
     confirmationUrl: String
@@ -13,6 +13,7 @@ const Order = `
     products: [String]!
     amount: Float!
     email: String!
+    status: String!
   }
 
   extend type Query {
