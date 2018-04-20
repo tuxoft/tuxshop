@@ -117,7 +117,8 @@ export default compose(
     name: "getOrder",
     skip: ({ match }) => !match.params.id,
     options: (ownProps) => ({
-      variables: { id: ownProps.match.params.id }
+      variables: { id: ownProps.match.params.id },
+      pollInterval: 10000
     })
   })
 )(CheckoutForm);
