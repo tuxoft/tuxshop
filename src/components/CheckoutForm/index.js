@@ -3,6 +3,7 @@ import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import ShippingForm from "../ShippingForm";
 import CartList from "../CartList";
+import OrderProducts from "../OrderProducts";
 import PaymentStatus from "../PaymentStatus";
 import * as styles from "./styles";
 
@@ -72,7 +73,7 @@ class CheckoutForm extends Component {
     }
 
     const order = {
-      products: this.props.cart.products.map(product => product.id),
+      products: this.props.cart.products.map(({__typename, ...filteredProduct}) => ({...filteredProduct})),
       amount: this.props.cart.products.reduce(
         (amount, product) => amount + product.price,
         0,
@@ -106,6 +107,10 @@ class CheckoutForm extends Component {
         </styles.Block>
 
         <styles.Block>
+          <OrderProducts order={this.props.getOrder && this.props.getOrder.order} />
+        </styles.Block>
+
+        <styles.Block>
           <ShippingForm
             order={this.props.getOrder && this.props.getOrder.order}
             shipping={this.state.shipping}
@@ -136,7 +141,11 @@ const getOrder = gql`
   query GetOrder($id: ID!) {
     order(id: $id) {
       id
-      products
+      products {
+        id
+        title
+        price
+      }
       status
       amount
       email

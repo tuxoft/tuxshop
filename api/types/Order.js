@@ -1,7 +1,7 @@
 const Order = `
   type Order {
     id: ID!
-    products: [String]!
+    products: [Product]!
     status: String!
     amount: Float!
     email: String!
@@ -9,8 +9,15 @@ const Order = `
     paymentId: String
   }
 
+  input ProductList {
+    id: ID!
+    title: String!
+    price: Float!
+    author: String
+  }
+
   input OrderInput {
-    products: [String]!
+    products: [ProductList]!
     amount: Float!
     email: String!
   }

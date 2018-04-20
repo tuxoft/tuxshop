@@ -11,6 +11,7 @@ const CartList = ({ inCheckout }) => (
     {({ cart, removeFromCart }) => (
       <styles.CartList>
         {
+          !inCheckout &&
           !cart.products.length && (
             <styles.EmptyCart>Cart is empty</styles.EmptyCart>
           )
