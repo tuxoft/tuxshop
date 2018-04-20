@@ -1,4 +1,4 @@
-const PRODUCTION = process.env.NODE_ENV === "production";
+// const PRODUCTION = process.env.NODE_ENV === "production";
 
 const config = {
   db: "tuxshop",
