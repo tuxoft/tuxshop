@@ -25,10 +25,16 @@ const Product = `
     type: ProductType!
   }
 
+  input ProductOptions {
+    type: String
+    start: Int
+    limit: Int
+  }
+
   extend type Query {
     product(id: ID!): Product,
-    products: [Product],
-    availableProducts: [Product],
+    products(options: ProductOptions): [Product],
+    availableProducts(options: ProductOptions): [Product],
   }
 
   extend type Mutation {

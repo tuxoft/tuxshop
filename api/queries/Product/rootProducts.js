@@ -1,7 +1,7 @@
 const { getProducts } = require("../../models/product");
 
-const products = () => {
-  return getProducts().then(result => {
+const products = (_, { options = {} }) => {
+  return getProducts(options).then(result => {
     return result;
   });
 };

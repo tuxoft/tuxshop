@@ -13,7 +13,6 @@ const Order = `
     products: [String]!
     amount: Float!
     email: String!
-    status: String!
   }
 
   extend type Query {

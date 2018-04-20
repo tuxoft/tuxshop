@@ -10,16 +10,30 @@ const getProductById = (id) => {
     });
 };
 
-const getProducts = () => {
+const getProducts = (options = {}) => {
+  let filters = {};
+
+  if (options.type) {
+    filters.type = options.type;
+  }
+
   return db
     .table("products")
+    .filter(filters)
     .run();
 };
 
-const getAvailableProducts = () => {
+const getAvailableProducts = (options = {}) => {
+  let filters = {};
+
+  if (options.type) {
+    filters.type = options.type;
+  }
+
   return db
     .table("products")
     .filter(db.row("quantity").gt(0))
+    .filter(filters)
     .run();
 };
 
