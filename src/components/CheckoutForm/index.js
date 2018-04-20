@@ -17,6 +17,27 @@ class CheckoutForm extends Component {
     },
   };
 
+  componentDidUpdate(prevProps) {
+    // Already paid or failed to pay order
+    if (
+      this.props.getOrder &&
+      this.props.getOrder.order &&
+      this.props.getOrder.order.status !== "pending"
+    ) {
+      // Stop polling
+      this.props.getOrder.stopPolling();
+    }
+
+    // Order already fetched
+    if (prevProps.getOrder && prevProps.getOrder.order) {
+      // And order status changed
+      if (this.props.getOrder.order.status !== "pending") {
+        // Stop polling
+        this.props.getOrder.stopPolling();
+      }
+    }
+  }
+
   handleShippingInputChange = e => {
     this.setState({
       shipping: {
@@ -51,8 +72,11 @@ class CheckoutForm extends Component {
 
     const order = {
       products: this.props.cart.products.map(product => product.id),
-      amount: this.props.cart.products.reduce((amount, product) => amount + product.price, 0),
-      email: this.state.shipping.email
+      amount: this.props.cart.products.reduce(
+        (amount, product) => amount + product.price,
+        0,
+      ),
+      email: this.state.shipping.email,
     };
 
     const { createOrder } = this.props;
@@ -61,11 +85,10 @@ class CheckoutForm extends Component {
       variables: {
         order,
       },
-    })
-      .then(({ data }) => {
-        // Redirect to payment
-        window.location = data.addOrder.confirmationUrl;
-      });
+    }).then(({ data }) => {
+      // Redirect to payment
+      window.location = data.addOrder.confirmationUrl;
+    });
   };
 
   render() {
@@ -116,9 +139,9 @@ export default compose(
   graphql(getOrder, {
     name: "getOrder",
     skip: ({ match }) => !match.params.id,
-    options: (ownProps) => ({
+    options: ownProps => ({
       variables: { id: ownProps.match.params.id },
-      pollInterval: 10000
-    })
-  })
+      pollInterval: 10000, // Poll every 10 seconds waiting order status changes from "pending" to "paid" or "failed_to_pay"
+    }),
+  }),
 )(CheckoutForm);
