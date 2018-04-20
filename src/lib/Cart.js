@@ -57,9 +57,21 @@ export class CartProvider extends Component {
       .reduce((acc, current) => acc + current.price, 0);
   };
 
+  clearCart = () => {
+    this.setState({
+      cart: {
+        products: [],
+        total: 0
+      }
+    }, () => {
+      storage.store("cart", this.state.cart);
+    });
+  };
+
   state = {
     cart: storage.load("cart") || {
-      products: []
+      products: [],
+      total: 0
     },
     addToCart: this.addToCart,
     removeFromCart: this.removeFromCart,
