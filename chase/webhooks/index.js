@@ -3,16 +3,16 @@ const config = {
   db: "tuxshop",
   max: 500,
   buffer: 5,
-  timeoutGb: 60 * 1000
+  timeoutGb: 60 * 1000,
 };
 
 const db = require("rethinkdbdash")(config);
 
-const getOrderByPaymentId = (paymentId) => {
+const getOrderByPaymentId = paymentId => {
   return db
     .table("orders")
     .filter({
-      paymentId
+      paymentId,
     })
     .run()
     .then(result => {
@@ -33,24 +33,26 @@ const updateOrder = (id, order) => {
 };
 
 const kassaWaitingForCaptureEvent = async ({ event }) => {
-  getOrderByPaymentId(event.object.id)
-    .then(order => {
-      if (!order) {
-        return;
-      }
+  getOrderByPaymentId(event.object.id).then(order => {
+    if (!order) {
+      return;
+    }
 
-      updateOrder(order.id, {
-        ...order,
-        status: "paid"
-      })
-      .then(() => {
-        return "done";
-      });
+    updateOrder(order.id, {
+      ...order,
+      status: "paid",
+    }).then(() => {
+      return "done";
     });
+  });
+};
+
+const kassaSucceededEvent = async ({ event }) => {
+  return "done";
 };
 
 const WebhookHandler = {
-  for: async (event) => {
+  for: async event => {
     const handler = {
       "payment.waiting_for_capture": kassaWaitingForCaptureEvent,
       "payment.succeeded": kassaSucceededEvent,
@@ -62,12 +64,10 @@ const WebhookHandler = {
     }
 
     return await handler({ event });
-  }
+  },
 };
 
 const handleWebhooks = async (req, res) => {
-  console.log(req.body);
-
   let event = JSON.parse(req.body);
 
   if (!event) {
@@ -80,7 +80,7 @@ const handleWebhooks = async (req, res) => {
       res
         .status(200)
         .send("Webhook received: " + event.event + " for: " + event.object.id),
-    )
+  )
     .catch(error => {
       console.log("Error happened: " + error);
     });
