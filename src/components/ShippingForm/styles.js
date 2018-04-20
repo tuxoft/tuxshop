@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import ButtonComponent from "../Button";
 
-export const ShippingForm = styled.div``;
+export const ShippingForm = styled.div`
+  margin-bottom: 1rem;
+`;
 
 export const Title = styled.h3`
   margin: 0 0 1rem 0;
