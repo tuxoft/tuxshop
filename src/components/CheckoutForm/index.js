@@ -61,7 +61,11 @@ class CheckoutForm extends Component {
       variables: {
         order,
       },
-    });
+    })
+      .then(({ data }) => {
+        // Redirect to payment
+        window.location = data.addOrder.confirmationUrl;
+      });
   };
 
   render() {
@@ -73,7 +77,7 @@ class CheckoutForm extends Component {
 
         <styles.Block>
           <ShippingForm
-            order={this.props.order}
+            order={this.props.getOrder && this.props.getOrder.order}
             shipping={this.state.shipping}
             isValid={this.isShippingValid()}
             handleInputChange={this.handleShippingInputChange}
@@ -88,29 +92,32 @@ class CheckoutForm extends Component {
 const createOrder = gql`
   mutation CreateOrder($order: OrderInput) {
     addOrder(order: $order) {
+      paymentId
+      confirmationUrl
+    }
+  }
+`;
+
+const getOrder = gql`
+  query GetOrder($id: ID!) {
+    order(id: $id) {
       id
       products
       status
       amount
       email
-      requestId
+      paymentId
     }
   }
 `;
 
-// const getOrder = gql`
-//   query GetOrder($id: ID!) {
-//     order(id: $id) {
-//       id
-//       products
-//       status
-//       amount
-//       email
-//       requestId
-//     }
-//   }
-// `;
-
 export default compose(
-  graphql(createOrder, { name: "createOrder" })
+  graphql(createOrder, { name: "createOrder" }),
+  graphql(getOrder, {
+    name: "getOrder",
+    skip: ({ match }) => !match.params.id,
+    options: (ownProps) => ({
+      variables: { id: ownProps.match.params.id }
+    })
+  })
 )(CheckoutForm);

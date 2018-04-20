@@ -1,6 +1,6 @@
 const { getSouvenirById } = require("../../models/souvenir");
 
-const souvenir = (id) => {
+const souvenir = (_, { id }) => {
   return getSouvenirById(id).then(result => {
     return result;
   });

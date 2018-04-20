@@ -5,7 +5,8 @@ const Order = `
     status: String
     amount: Float!
     email: String!
-    requestId: String
+    confirmationUrl: String
+    paymentId: String
   }
 
   input OrderInput {

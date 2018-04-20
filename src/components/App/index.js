@@ -13,6 +13,7 @@ class App extends Component {
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/cart" component={CartScreen} />
           <Route exact path="/checkout" component={CheckoutScreen} />
+          <Route exact path="/checkout/:id" component={CheckoutScreen} />
         </Switch>
       </CartProvider>
     );
