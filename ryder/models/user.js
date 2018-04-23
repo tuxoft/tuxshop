@@ -1,4 +1,21 @@
+const crypto = require("crypto");
+const nanoid = require("nanoid");
 const { db } = require("./db");
+
+const encryptPassword = (password, salt) => {
+  return crypto
+    .createHmac("sha1", salt)
+    .update(password)
+    .digest("hex");
+};
+
+const generateSalt = () => {
+  return nanoid();
+};
+
+const authenticate = (user, password) => {
+  return encryptPassword(password, user.salt) === user.password;
+};
 
 const getUser = async input => {
   if (input.id) return await getUserById(input.id);
@@ -21,14 +38,23 @@ const getUserByEmail = email => {
     .then(results => (results.length > 0 ? results[0] : null));
 };
 
-const createUser = (user) => {
+const createUser = user => {
+  const salt = generateSalt();
+  const password = user.password;
+
+  const userInput = {
+    ...user,
+    salt,
+    password: encryptPassword(password, salt)
+  };
+
   return db
     .table("users")
-    .insert(user)
+    .insert(userInput)
     .run()
     .then(result => {
       return result;
-    })
+    });
 };
 
 const updateUser = (id, user) => {
@@ -44,5 +70,7 @@ module.exports = {
   getUserById,
   getUserByEmail,
   createUser,
-  updateUser
+  updateUser,
+  authenticate,
+  encryptPassword
 };
