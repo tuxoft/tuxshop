@@ -23,7 +23,7 @@ const getAvailableBooks = () => {
     .run();
 };
 
-const saveBook = (book) => {
+const createBook = (book) => {
   return db
     .table("books")
     .insert(book)
@@ -39,9 +39,9 @@ const updateBook = (id, book) => {
 };
 
 module.exports = {
-  getBookById: getBookById,
-  getBooks: getBooks,
-  getAvailableBooks: getAvailableBooks,
-  saveBook: saveBook,
-  updateBook: updateBook
+  getBookById,
+  getBooks,
+  getAvailableBooks,
+  createBook,
+  updateBook
 };
