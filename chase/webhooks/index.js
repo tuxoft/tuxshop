@@ -3,7 +3,7 @@ const config = {
   db: "tuxshop",
   max: 500,
   buffer: 5,
-  timeoutGb: 60 * 1000,
+  timeoutGb: 60 * 1000
 };
 
 const db = require("rethinkdbdash")(config);
@@ -12,7 +12,7 @@ const getOrderByPaymentId = paymentId => {
   return db
     .table("orders")
     .filter({
-      paymentId,
+      paymentId
     })
     .run()
     .then(result => {
@@ -40,7 +40,7 @@ const kassaWaitingForCaptureEvent = async ({ event }) => {
 
     updateOrder(order.id, {
       ...order,
-      status: "paid",
+      status: "paid"
     }).then(() => {
       return "done";
     });
@@ -55,7 +55,7 @@ const WebhookHandler = {
   for: async event => {
     const handler = {
       "payment.waiting_for_capture": kassaWaitingForCaptureEvent,
-      "payment.succeeded": kassaSucceededEvent,
+      "payment.succeeded": kassaSucceededEvent
     }[event.event];
 
     if (!handler || handler === undefined) {
@@ -64,7 +64,7 @@ const WebhookHandler = {
     }
 
     return await handler({ event });
-  },
+  }
 };
 
 const handleWebhooks = async (req, res) => {
@@ -79,13 +79,13 @@ const handleWebhooks = async (req, res) => {
     .then(() =>
       res
         .status(200)
-        .send("Webhook received: " + event.event + " for: " + event.object.id),
-  )
+        .send("Webhook received: " + event.event + " for: " + event.object.id)
+    )
     .catch(error => {
       console.log("Error happened: " + error);
     });
 };
 
 module.exports = {
-  handleWebhooks,
+  handleWebhooks
 };

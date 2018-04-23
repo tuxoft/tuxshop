@@ -11,11 +11,11 @@ const app = express();
 app.use(helmet());
 
 // Parse incoming request bodies for webhooks
-app.use(require('body-parser').raw({ type: '*/*' }));
+app.use(require("body-parser").raw({ type: "*/*" }));
 
 app.get("/", (req, res) => res.status(200).send({ chase: "running" }));
 
-app.post('/webhooks', (req, res) => handleWebhooks(req, res));
+app.post("/webhooks", (req, res) => handleWebhooks(req, res));
 
 const server = createServer(app);
 
