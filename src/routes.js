@@ -5,6 +5,7 @@ import CartScreen from "./screens/Cart";
 import CheckoutScreen from "./screens/Checkout";
 import LoginScreen from "./screens/Login";
 import AdminStorageScreen from "./screens/Admin/Storage";
+import AdminStorageNewScreen from "./screens/Admin/StorageNew";
 import { AuthContext } from "./lib/Auth";
 
 const AuthConsumer = AuthContext.Consumer;
@@ -54,6 +55,13 @@ const Routes = props => (
           exact
           path="/admin/storage"
           component={AdminStorageScreen}
+          isAuthenticated={isAuthenticated}
+        />
+
+        <ProtectedRoute
+          exact
+          path="/admin/storage/new"
+          component={AdminStorageNewScreen}
           isAuthenticated={isAuthenticated}
         />
       </Switch>
