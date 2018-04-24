@@ -88,10 +88,13 @@ app.get("/logout", (req, res) => {
 
 app.use(
   "/graphql",
-  graphqlExpress({
+  graphqlExpress(req => ({
     schema,
     tracing: true,
-  }),
+    context: {
+      user: req.user,
+    },
+  })),
 );
 
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
