@@ -14,16 +14,14 @@ class AdminStorage extends Component {
     this.props.products.refetch();
   }
 
-  deleteProduct = product => {
-    this.props
-      .deleteProduct({
-        variables: {
-          id: product.id,
-        },
-      })
-      .then(() => {
-        this.props.products.refetch();
-      });
+  deleteProduct = async product => {
+    await this.props.deleteProduct({
+      variables: {
+        id: product.id,
+      },
+    });
+
+    this.props.products.refetch();
   };
 
   render() {
