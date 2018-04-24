@@ -2,7 +2,7 @@ const { saveProduct, getProductById } = require("../../models/product");
 
 module.exports = (_, { product }, { user }) => {
   if (!user) {
-    throw new Error("You must be signed in to create the product");
+    return new Error("You must be signed in to create the product");
   }
 
   return saveProduct(product).then(result => {

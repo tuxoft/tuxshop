@@ -30,11 +30,15 @@ class ProductForm extends Component {
 
     const product = this.state;
 
-    await createProduct({
-      variables: {
-        product
-      }
-    });
+    try {
+      await createProduct({
+        variables: {
+          product
+        }
+      });
+    } catch (error) {
+      console.log("createProduct: ", error);
+    }
 
     history.push("/admin/storage");
   };
