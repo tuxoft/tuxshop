@@ -9,7 +9,12 @@ export const Empty = styled.p``;
 
 export const List = styled(ListComponent.List)``;
 
-export const ListItem = styled(ListComponent.ListItem)``;
+export const ListItem = styled(ListComponent.ListItem)`
+  &:not(:last-child) {
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 1rem;
+  }
+`;
 
 export const NewProductLink = styled(props => <Link {...props} />)`
   display: inline-block;
