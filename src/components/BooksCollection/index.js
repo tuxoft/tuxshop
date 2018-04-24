@@ -4,27 +4,18 @@ import * as styles from "./styles";
 
 const BooksCollection = ({ books }) => (
   <styles.BooksCollection>
-    {
-      !books && (
-        <styles.Empty>
-          No books available.
-        </styles.Empty>
-      )
-    }
+    {!books && <styles.Empty>No books available.</styles.Empty>}
 
-    {
-      books &&
+    {books &&
       books.length > 0 && (
         <styles.Grid>
-          {
-            books.map(book => (
-              <styles.GridItem key={book.id}>
-                <Book book={book} />
-              </styles.GridItem>
-            ))}
+          {books.map(book => (
+            <styles.GridItem key={book.id}>
+              <Book book={book} />
+            </styles.GridItem>
+          ))}
         </styles.Grid>
-      )
-    }
+      )}
   </styles.BooksCollection>
 );
 
