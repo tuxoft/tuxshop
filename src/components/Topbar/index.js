@@ -20,15 +20,12 @@ const Topbar = props => (
             </styles.NavItem>
 
             <AuthConsumer>
-              {({ user, logout, isAuthenticated }) => (
+              {({ logout, isAuthenticated }) => (
                 <span>
                   {isAuthenticated() ? (
-                    <styles.User>
-                      <styles.Username>{user.email}</styles.Username>
-                      <styles.Logout onClick={() => logout()}>
-                        Logout
-                      </styles.Logout>
-                    </styles.User>
+                    <styles.Logout onClick={() => logout()}>
+                      Logout
+                    </styles.Logout>
                   ) : (
                     <styles.NavItem to="/login">Login</styles.NavItem>
                   )}

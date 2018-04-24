@@ -43,11 +43,4 @@ export const NavItem = styled(props => <Link {...props} />)`
   }
 `;
 
-export const User = styled.div``;
-
-export const Username = styled.span`
-  display: inline-block;
-  margin-right: 1rem;
-`;
-
 export const Logout = styled(ButtonComponent)``;
