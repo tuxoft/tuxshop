@@ -13,6 +13,16 @@ import SouvenirsCollection from "../../components/SouvenirsCollection";
 import Footer from "../../components/Footer";
 
 class HomeScreen extends Component {
+  componentDidMount() {
+    if (this.props.booksQuery) {
+      this.props.booksQuery.refetch();
+    }
+
+    if (this.props.souvenirsQuery) {
+      this.props.souvenirsQuery.refetch();
+    }
+  }
+
   render() {
     return (
       <Screen>
