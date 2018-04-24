@@ -19,7 +19,7 @@ const app = express();
 
 const _cors = cors({
   origin: [/localhost/],
-  credentials: true,
+  credentials: true
 });
 
 // Middlewares
@@ -36,8 +36,8 @@ app.use(
   session({
     secret: "tuxshop secret asadsd",
     resave: false,
-    saveUninitialized: false,
-  }),
+    saveUninitialized: false
+  })
 );
 
 // Initialize Passport and restore authentication state, if any, from the
@@ -52,12 +52,12 @@ app.get("/user", (req, res, next) => {
   if (req.user) {
     return res.status(200).json({
       user: req.user,
-      authenticated: true,
+      authenticated: true
     });
   } else {
     return res.status(401).json({
       error: "Incorrect email or password.",
-      authenticated: false,
+      authenticated: false
     });
   }
 });
@@ -68,7 +68,7 @@ app.post("/login", passport.authenticate("local"), (req, res) => {
       return next(error);
     }
 
-    console.log(req.session);
+    // console.log(req.session);
 
     res.status(200).json({ success: true });
   });
@@ -90,17 +90,16 @@ app.use(
   "/graphql",
   graphqlExpress(req => ({
     schema,
-    tracing: true,
     context: {
-      user: req.user,
-    },
-  })),
+      user: req.user
+    }
+  }))
 );
 
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
 app.listen(GRAPHQL_PORT, () =>
   console.log(
-    `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`,
-  ),
+    `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`
+  )
 );
