@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { graphql, compose } from "react-apollo";
+import { withRouter } from "react-router-dom";
+import gql from "graphql-tag";
 import * as styles from "./styles";
 
 class ProductForm extends Component {
@@ -16,8 +19,24 @@ class ProductForm extends Component {
     });
   };
 
-  handleSubmit = () => {
-    console.log("handleSubmit: ", this.state);
+  handleSubmit = e => {
+    e.preventDefault();
+
+    if (!this.isValid()) {
+      return false;
+    }
+
+    const { createProduct, history } = this.props;
+
+    const product = this.state;
+
+    createProduct({
+      variables: {
+        product,
+      },
+    }).then(product => {
+      history.push("/admin/storage");
+    });
   };
 
   isValid = () => {
@@ -111,4 +130,14 @@ class ProductForm extends Component {
   }
 }
 
-export default ProductForm;
+const createProduct = gql`
+  mutation CreateProduct($product: ProductInput) {
+    addProduct(product: $product) {
+      id
+    }
+  }
+`;
+
+export default withRouter(
+  compose(graphql(createProduct, { name: "createProduct" }))(ProductForm),
+);
