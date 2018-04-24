@@ -3,6 +3,8 @@ import { CartContext } from "../../lib/Cart";
 import { AuthContext } from "../../lib/Auth";
 import * as styles from "./styles";
 
+const Fragment = React.Fragment;
+
 const CartConsumer = CartContext.Consumer;
 const AuthConsumer = AuthContext.Consumer;
 
@@ -23,9 +25,13 @@ const Topbar = props => (
               {({ logout, isAuthenticated }) => (
                 <span>
                   {isAuthenticated() ? (
-                    <styles.Logout onClick={() => logout()}>
-                      Logout
-                    </styles.Logout>
+                    <Fragment>
+                      <styles.NavItem to="/admin/storage">Admin::Storage</styles.NavItem>
+
+                      <styles.Logout onClick={() => logout()}>
+                        Logout
+                      </styles.Logout>
+                    </Fragment>
                   ) : (
                     <styles.NavItem to="/login">Login</styles.NavItem>
                   )}
