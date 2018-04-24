@@ -35,6 +35,11 @@ export const Price = styled.span`
   margin-bottom: 1rem;
 `;
 
-export const AddToCart = styled(ButtonComponent)``;
+export const Button = styled(ButtonComponent)`
+  margin-top: auto;
+  margin-bottom: 0;
+`;
 
-export const RemoveFromCart = styled(ButtonComponent)``;
+export const AddToCart = Button;
+
+export const RemoveFromCart = Button;
