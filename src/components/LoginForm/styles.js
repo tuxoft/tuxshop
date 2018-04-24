@@ -1,15 +1,11 @@
 import styled from "styled-components";
 import ButtonComponent from "../Button";
 
-export const ShippingForm = styled.div`
+export const LoginForm = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Title = styled.h3`
-  margin: 0 0 1rem 0;
-`;
-
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -39,6 +35,6 @@ export const FormInput = styled.input`
 `;
 
 export const SubmitButton = styled(ButtonComponent)`
-  background-color: #1F63E6;
+  background-color: #1f63e6;
   color: #fff;
 `;

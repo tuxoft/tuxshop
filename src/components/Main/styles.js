@@ -9,4 +9,8 @@ export const Main = styled.main`
   @media (min-width: 600px) {
     width: 80%;
   }
+
+  ${props => props.fullWidth && `
+    width: 100%;
+  `};
 `;

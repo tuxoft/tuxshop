@@ -40,8 +40,6 @@ const init = () => {
 
     return null;
   });
-
-  return passport;
 };
 
 module.exports = {
