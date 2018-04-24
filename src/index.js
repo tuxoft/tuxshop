@@ -14,11 +14,14 @@ const currentUser = storage.load("user");
 
 console.log("currentUser: ", currentUser);
 
-const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql" });
+const httpLink = new HttpLink({
+  uri: "http://localhost:4000/graphql",
+  credentials: "include"
+});
 
 const client = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
@@ -27,6 +30,6 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </BrowserRouter>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );
 registerServiceWorker();
