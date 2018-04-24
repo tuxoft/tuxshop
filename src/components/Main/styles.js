@@ -11,6 +11,6 @@ export const Main = styled.main`
   }
 
   ${props => props.fullWidth && `
-    width: 100%;
+    width: 100% !important;
   `};
 `;
