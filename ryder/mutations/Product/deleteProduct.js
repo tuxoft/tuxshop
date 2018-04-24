@@ -1,7 +1,9 @@
 const { deleteProduct, getProductById } = require("../../models/product");
 
 module.exports = (_, { id }, { user }) => {
-  console.log("deleteProduct: " + id + " user: " + user);
+  if (!user) {
+    throw new Error("You must be signed in to delete the product");
+  }
 
   return deleteProduct(id);
 };
