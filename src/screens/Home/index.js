@@ -27,15 +27,17 @@ class HomeScreen extends Component {
               {this.props.souvenirsQuery && "Souvenirs"}
             </ScreenName>
 
-            {
-              this.props.booksQuery &&
-              <BooksCollection books={this.props.booksQuery.availableProducts} />
-            }
+            {this.props.booksQuery && (
+              <BooksCollection
+                books={this.props.booksQuery.availableProducts}
+              />
+            )}
 
-            {
-              this.props.souvenirsQuery &&
-              <SouvenirsCollection souvenirs={this.props.souvenirsQuery.availableProducts} />
-            }
+            {this.props.souvenirsQuery && (
+              <SouvenirsCollection
+                souvenirs={this.props.souvenirsQuery.availableProducts}
+              />
+            )}
           </Main>
         </Content>
 
@@ -67,6 +69,14 @@ const getAvailableSouvenirs = gql`
 `;
 
 export default compose(
-  graphql(getAvailableBooks, { name: "booksQuery", skip: ({ location }) => queryString.parse(location.search).category === "souvenirs" }),
-  graphql(getAvailableSouvenirs, { name: "souvenirsQuery", skip: ({ location }) => queryString.parse(location.search).category !== "souvenirs" })
+  graphql(getAvailableBooks, {
+    name: "booksQuery",
+    skip: ({ location }) =>
+      queryString.parse(location.search).category === "souvenirs",
+  }),
+  graphql(getAvailableSouvenirs, {
+    name: "souvenirsQuery",
+    skip: ({ location }) =>
+      queryString.parse(location.search).category !== "souvenirs",
+  }),
 )(HomeScreen);
