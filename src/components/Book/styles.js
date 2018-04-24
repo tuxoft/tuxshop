@@ -13,7 +13,9 @@ export const Cover = styled.div`
   width: 100%;
   margin-bottom: 1rem;
 
-  ${props => props.coverUrl && `
+  ${props =>
+    props.coverUrl &&
+    `
     background-image: url(/images/${props.coverUrl});
     background-position: center center;
     background-size: cover;
