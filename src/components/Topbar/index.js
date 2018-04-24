@@ -14,6 +14,7 @@ const Topbar = (props) => (
           <styles.Nav>
             <styles.NavItem to="/">Search</styles.NavItem>
             <styles.NavItem to="/cart">Cart ({cart.products.length})</styles.NavItem>
+            <styles.NavItem to="/login">Login</styles.NavItem>
           </styles.Nav>
         </styles.Container>
       </styles.Topbar>
