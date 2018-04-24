@@ -10,6 +10,10 @@ import Footer from "../../../components/Footer";
 import ProductsCollection from "../../../components/ProductsCollection";
 
 class AdminStorage extends Component {
+  componentDidMount() {
+    this.props.products.refetch();
+  }
+
   render() {
     return (
       <Screen>
