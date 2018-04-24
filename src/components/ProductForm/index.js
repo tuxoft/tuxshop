@@ -10,12 +10,12 @@ class ProductForm extends Component {
     author: "",
     price: 0.0,
     quantity: 0,
-    type: "book",
+    type: "book"
   };
 
   handleInputChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -32,8 +32,8 @@ class ProductForm extends Component {
 
     await createProduct({
       variables: {
-        product,
-      },
+        product
+      }
     });
 
     history.push("/admin/storage");
@@ -139,5 +139,5 @@ const createProduct = gql`
 `;
 
 export default withRouter(
-  compose(graphql(createProduct, { name: "createProduct" }))(ProductForm),
+  compose(graphql(createProduct, { name: "createProduct" }))(ProductForm)
 );
