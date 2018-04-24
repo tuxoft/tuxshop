@@ -16,6 +16,10 @@ const ProductsCollection = ({ products }) => (
           ))}
         </styles.List>
       )}
+
+    <styles.NewProductLink to="/admin/storage/new">
+      Add a product
+    </styles.NewProductLink>
   </styles.ProductsCollection>
 );
 
