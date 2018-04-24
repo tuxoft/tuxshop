@@ -16,11 +16,14 @@ export class AuthProvider extends Component {
   };
 
   logout = () => {
-    this.setState({
-      user: null
-    }, () => {
-      storage.store("user", this.state.user);
-    });
+    this.setState(
+      {
+        user: null,
+      },
+      () => {
+        storage.store("user", this.state.user);
+      },
+    );
   };
 
   isAuthenticated = () => {
