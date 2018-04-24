@@ -27,7 +27,7 @@ const getUserById = id => {
   return db
     .table("users")
     .get(id)
-    .pluck("id", "email")
+    // .pluck("id", "email")
     .run();
 };
 
@@ -35,7 +35,7 @@ const getUserByEmail = email => {
   return db
     .table("users")
     .getAll(email, { index: "email" })
-    .pluck("id", "email")
+    // .pluck("id", "email")
     .run()
     .then(results => (results.length > 0 ? results[0] : null));
 };

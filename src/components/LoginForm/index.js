@@ -43,8 +43,10 @@ class LoginForm extends Component {
           },
         })
           .then(res => res.json())
-          .then(user => {
-            console.log("user: ", user);
+          .then(res => {
+            console.log("user: ", res);
+
+            this.props.auth.login(res.user);
           });
       })
       .catch(error => {

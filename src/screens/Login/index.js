@@ -6,6 +6,9 @@ import Content from "../../components/Content";
 import Main from "../../components/Main";
 import Footer from "../../components/Footer";
 import LoginForm from "../../components/LoginForm";
+import { AuthContext } from "../../lib/Auth";
+
+const AuthConsumer = AuthContext.Consumer;
 
 class LoginScreen extends Component {
   render() {
@@ -17,7 +20,7 @@ class LoginScreen extends Component {
           <Main fullWidth>
             <ScreenName>Login</ScreenName>
 
-            <LoginForm />
+            <AuthConsumer>{auth => <LoginForm auth={auth} />}</AuthConsumer>
           </Main>
         </Content>
         <Footer />
