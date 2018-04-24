@@ -15,8 +15,6 @@ const init = () => {
     if (!user) return done(null, false);
     if (!User.authenticate(user, password)) return done(null, false);
 
-    console.log("User found: ", user);
-
     return done(null, user);
   }));
 
