@@ -19,7 +19,7 @@ class ProductForm extends Component {
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     if (!this.isValid()) {
@@ -30,13 +30,13 @@ class ProductForm extends Component {
 
     const product = this.state;
 
-    createProduct({
+    await createProduct({
       variables: {
         product,
       },
-    }).then(product => {
-      history.push("/admin/storage");
     });
+
+    history.push("/admin/storage");
   };
 
   isValid = () => {
