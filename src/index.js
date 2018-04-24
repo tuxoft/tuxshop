@@ -8,11 +8,11 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import "./index.css";
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
-import * as storage from "./lib/localStorage";
+// import * as storage from "./lib/localStorage";
 
-const currentUser = storage.load("user");
+// const currentUser = storage.load("user");
 
-console.log("currentUser: ", currentUser);
+// console.log("currentUser: ", currentUser);
 
 const httpLink = new HttpLink({
   uri: "http://localhost:4000/graphql",
