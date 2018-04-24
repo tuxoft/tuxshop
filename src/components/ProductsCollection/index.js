@@ -2,7 +2,7 @@ import React from "react";
 import Product from "../Product";
 import * as styles from "./styles";
 
-const ProductsCollection = ({ products }) => (
+const ProductsCollection = ({ products, deleteProduct }) => (
   <styles.ProductsCollection>
     {!products && <styles.Empty>No products in storage.</styles.Empty>}
 
@@ -11,7 +11,7 @@ const ProductsCollection = ({ products }) => (
         <styles.List>
           {products.map(product => (
             <styles.ListItem key={product.id}>
-              <Product product={product} />
+              <Product product={product} deleteProduct={deleteProduct} />
             </styles.ListItem>
           ))}
         </styles.List>

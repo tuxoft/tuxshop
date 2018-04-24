@@ -14,6 +14,18 @@ class AdminStorage extends Component {
     this.props.products.refetch();
   }
 
+  deleteProduct = product => {
+    this.props
+      .deleteProduct({
+        variables: {
+          id: product.id,
+        },
+      })
+      .then(() => {
+        this.props.products.refetch();
+      });
+  };
+
   render() {
     return (
       <Screen>
@@ -23,7 +35,10 @@ class AdminStorage extends Component {
           <Main fullWidth>
             <ScreenName>Admin::Storage</ScreenName>
 
-            <ProductsCollection products={this.props.products.products} />
+            <ProductsCollection
+              products={this.props.products.products}
+              deleteProduct={this.deleteProduct}
+            />
           </Main>
         </Content>
 
@@ -45,6 +60,13 @@ const getProducts = gql`
   }
 `;
 
-export default compose(graphql(getProducts, { name: "products" }))(
-  AdminStorage,
-);
+const deleteProduct = gql`
+  mutation DeleteProductMutation($id: ID!) {
+    deleteProduct(id: $id)
+  }
+`;
+
+export default compose(
+  graphql(getProducts, { name: "products" }),
+  graphql(deleteProduct, { name: "deleteProduct" }),
+)(AdminStorage);

@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "./styles";
 
-const Product = ({ product }) => (
+const Product = ({ product, deleteProduct }) => (
   <styles.Product>
     <styles.Header>
       <styles.Title>{product.title}</styles.Title>
@@ -13,7 +13,7 @@ const Product = ({ product }) => (
       <styles.Attribute>Quantity: {product.quantity}</styles.Attribute>
 
       <styles.Controls>
-        <styles.Control>Delete product</styles.Control>
+        <styles.Control onClick={() => deleteProduct(product)}>Delete product</styles.Control>
       </styles.Controls>
     </styles.Body>
   </styles.Product>
