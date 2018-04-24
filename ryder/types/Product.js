@@ -39,7 +39,8 @@ const Product = `
 
   extend type Mutation {
     addProduct(product: ProductInput): Product,
-    updateProduct(id: String!, product: ProductInput): Product
+    updateProduct(id: String!, product: ProductInput): Product,
+    deleteProduct(id: ID!): Boolean
   }
 `;
 

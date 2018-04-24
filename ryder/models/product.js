@@ -1,6 +1,6 @@
 const { db } = require("./db");
 
-const getProductById = (id) => {
+const getProductById = id => {
   return db
     .table("products")
     .get(id)
@@ -37,7 +37,7 @@ const getAvailableProducts = (options = {}) => {
     .run();
 };
 
-const saveProduct = (product) => {
+const saveProduct = product => {
   return db
     .table("products")
     .insert(product)
@@ -52,10 +52,19 @@ const updateProduct = (id, product) => {
     .run();
 };
 
+const deleteProduct = (id) => {
+  return db
+    .table("products")
+    .get(id)
+    .delete()
+    .run();
+};
+
 module.exports = {
   getProductById: getProductById,
   getProducts: getProducts,
   getAvailableProducts: getAvailableProducts,
   saveProduct: saveProduct,
-  updateProduct: updateProduct
+  updateProduct: updateProduct,
+  deleteProduct: deleteProduct,
 };
