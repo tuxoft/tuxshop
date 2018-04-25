@@ -29,12 +29,36 @@ const OrderList = ({ orders }) => (
         {orders &&
           orders.map(order => (
             <Table.BodyRow key={order.id}>
-              <Table.BodyColumn>{order.email}</Table.BodyColumn>
-              <Table.BodyColumn>{order.amount}</Table.BodyColumn>
-              <Table.BodyColumn>{order.status}</Table.BodyColumn>
-              <Table.BodyColumn>{order.idempotenceKey}</Table.BodyColumn>
-              <Table.BodyColumn>{order.paymentId}</Table.BodyColumn>
-              <Table.BodyColumn>Edit</Table.BodyColumn>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}`}>
+                  {order.email}
+                </styles.OrderLink>
+              </Table.BodyColumn>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}`}>
+                  {order.amount}
+                </styles.OrderLink>
+              </Table.BodyColumn>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}`}>
+                  {order.status}
+                </styles.OrderLink>
+              </Table.BodyColumn>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}`}>
+                  {order.idempotenceKey}
+                </styles.OrderLink>
+              </Table.BodyColumn>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}`}>
+                  {order.paymentId}
+                </styles.OrderLink>
+              </Table.BodyColumn>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}/edit`}>
+                  Edit
+                </styles.OrderLink>
+              </Table.BodyColumn>
             </Table.BodyRow>
           ))}
       </Table.Body>

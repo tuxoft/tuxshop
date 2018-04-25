@@ -10,19 +10,15 @@ const OrderProducts = ({ order }) => {
 
   return (
     <styles.OrderProducts>
-      {
-          order.products.length > 0 && (
-            <List.List>
-              {
-                order.products.map(product =>
-                  <List.ListItem key={product.id}>
-                    <CartProduct product={product} inCheckout />
-                  </List.ListItem>
-                )
-              }
-            </List.List>
-          )
-        }
+      {order.products.length > 0 && (
+        <List.List>
+          {order.products.map(product => (
+            <List.ListItem key={product.id}>
+              <CartProduct product={product} inCheckout />
+            </List.ListItem>
+          ))}
+        </List.List>
+      )}
     </styles.OrderProducts>
   );
 };
