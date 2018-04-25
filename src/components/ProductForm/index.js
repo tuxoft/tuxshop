@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { graphql, compose } from "react-apollo";
 import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
+import { productInfo } from "../../graphql/fragments/products/productInfo";
 import * as styles from "./styles";
 
 class ProductForm extends Component {
@@ -145,6 +146,25 @@ const createProduct = gql`
   }
 `;
 
+const getProduct = gql`
+  query GetProduct($id: ID!) {
+    product(id: $id) {
+      ... productInfo
+    }
+  }
+  
+  ${productInfo}
+`;
+
 export default withRouter(
-  compose(graphql(createProduct, { name: "createProduct" }))(ProductForm)
+  compose(
+    graphql(createProduct, { name: "createProduct" }),
+    graphql(getProduct, {
+      name: "getProduct",
+      skip: ({ match }) => !match.params.id,
+      options: ownProps => ({
+        variables: { id: ownProps.match.params.id }
+      })
+    })
+  )(ProductForm)
 );
