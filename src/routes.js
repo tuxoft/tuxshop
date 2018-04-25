@@ -7,6 +7,7 @@ import LoginScreen from "./screens/Login";
 import AdminStorageScreen from "./screens/Admin/Storage";
 import AdminStorageNewScreen from "./screens/Admin/StorageNew";
 import AdminStorageEditScreen from "./screens/Admin/StorageEdit";
+import AdminOrdersScreen from "./screens/Admin/Orders";
 import Api from "./api";
 
 const ProtectedRoute = ({ component: Component, ...restProps }) => (
@@ -64,6 +65,7 @@ class Routes extends Component {
           }
         />
 
+        {/* // Storage */}
         <ProtectedRoute
           exact
           path="/admin/storage"
@@ -84,6 +86,15 @@ class Routes extends Component {
           exact
           path="/admin/storage/edit/:id"
           component={AdminStorageEditScreen}
+          auth={this.props.auth}
+          isAuthenticated={this.props.auth.isAuthenticated}
+        />
+
+        {/* // Orders */}
+        <ProtectedRoute
+          exact
+          path="/admin/orders"
+          component={AdminOrdersScreen}
           auth={this.props.auth}
           isAuthenticated={this.props.auth.isAuthenticated}
         />
