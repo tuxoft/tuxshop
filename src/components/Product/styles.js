@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import ButtonComponent from "../Button";
 
 export const Product = styled.div`
@@ -36,4 +38,10 @@ export const Control = styled(ButtonComponent)`
   border: 1px solid #E81E12;
   color: #fff;
   padding: 0.5rem;
+`;
+
+export const EditLink = styled(props => <Link {...props} />)`
+  color: #000;
+  text-decoration: none;
+  margin-right: 1rem;
 `;
