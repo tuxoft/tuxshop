@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { omit } from "lodash";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import ShippingForm from "../ShippingForm";
@@ -19,6 +20,20 @@ class CheckoutForm extends Component {
     }
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (
+      nextProps.getOrder &&
+      nextProps.getOrder.order &&
+      nextProps.getOrder.order.shipping !== prevState.shipping
+    ) {
+      return {
+        shipping: nextProps.getOrder.order.shipping
+      };
+    }
+
+    return null;
+  }
+
   componentDidUpdate(prevProps) {
     // Already paid or failed to pay order
     if (
@@ -26,6 +41,11 @@ class CheckoutForm extends Component {
       this.props.getOrder.order &&
       this.props.getOrder.order.status !== "pending"
     ) {
+      // // Set shipping info
+      // this.setState({
+      //   shipping: this.props.order.shipping
+      // })
+
       // Stop polling
       this.props.getOrder.stopPolling();
     }
@@ -50,17 +70,18 @@ class CheckoutForm extends Component {
   };
 
   isShippingValid = () => {
-    // TODO: Uncomment
-    // const { shipping } = this.state;
+    const { shipping } = this.state;
 
-    // if (!shipping.email ||
-    //   !shipping.fullName ||
-    //   !shipping.country ||
-    //   !shipping.address ||
-    //   !shipping.city ||
-    //   !shipping.zipcode) {
-    //   return false;
-    // }
+    if (
+      !shipping.email ||
+      !shipping.fullName ||
+      !shipping.country ||
+      !shipping.address ||
+      !shipping.city ||
+      !shipping.zipcode
+    ) {
+      return false;
+    }
 
     return true;
   };
@@ -86,7 +107,8 @@ class CheckoutForm extends Component {
             ...order,
             products: order.products.map(
               ({ __typename, ...filteredProduct }) => filteredProduct
-            )
+            ),
+            shipping: omit(order.shipping, ["__typename"])
           }
         }
       }).then(({ data }) => {
@@ -102,7 +124,8 @@ class CheckoutForm extends Component {
           (amount, product) => amount + product.price,
           0
         ),
-        email: this.state.shipping.email
+        email: this.state.shipping.email,
+        shipping: this.state.shipping
       };
 
       createOrder({
@@ -185,6 +208,14 @@ const getOrder = gql`
       amount
       email
       paymentId
+      shipping {
+        email
+        country
+        city
+        address
+        zipcode
+        fullName
+      }
     }
   }
 `;
