@@ -82,11 +82,11 @@ export default compose(
   graphql(getAvailableBooks, {
     name: "booksQuery",
     skip: ({ location }) =>
-      queryString.parse(location.search).category === "souvenirs",
+      queryString.parse(location.search).category === "souvenirs"
   }),
   graphql(getAvailableSouvenirs, {
     name: "souvenirsQuery",
     skip: ({ location }) =>
-      queryString.parse(location.search).category !== "souvenirs",
-  }),
+      queryString.parse(location.search).category !== "souvenirs"
+  })
 )(HomeScreen);

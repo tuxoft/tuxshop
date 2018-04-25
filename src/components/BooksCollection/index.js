@@ -2,7 +2,7 @@ import React from "react";
 import Book from "../Book";
 import * as styles from "./styles";
 
-const BooksCollection = ({ books }) => (
+const BooksCollection = ({ books, small }) => (
   <styles.BooksCollection>
     {!books && <styles.Empty>No books available.</styles.Empty>}
 
@@ -11,7 +11,7 @@ const BooksCollection = ({ books }) => (
         <styles.Grid>
           {books.map(book => (
             <styles.GridItem key={book.id}>
-              <Book book={book} />
+              <Book book={book} small={small} />
             </styles.GridItem>
           ))}
         </styles.Grid>

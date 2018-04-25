@@ -20,6 +20,10 @@ export const Cover = styled.div`
     background-position: center center;
     background-size: cover;
   `};
+
+  ${props => props.small && `
+    height: 200px;
+  `};
 `;
 
 export const Title = styled.h1`

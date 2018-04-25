@@ -4,11 +4,11 @@ import * as styles from "./styles";
 
 const CartConsumer = CartContext.Consumer;
 
-const Book = ({ book }) => (
+const Book = ({ book, small }) => (
   <CartConsumer>
     {({ cart, addToCart, removeFromCart, inCart }) => (
       <styles.Book>
-        <styles.Cover />
+        <styles.Cover small={small} />
         <styles.Title>{book.title}</styles.Title>
         <styles.Author>{book.author}</styles.Author>
         <styles.Price>${book.price}</styles.Price>
