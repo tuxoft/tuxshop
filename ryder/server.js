@@ -68,8 +68,6 @@ app.post("/login", passport.authenticate("local"), (req, res) => {
       return next(error);
     }
 
-    // console.log(req.session);
-
     res.status(200).json({ success: true });
   });
 });
