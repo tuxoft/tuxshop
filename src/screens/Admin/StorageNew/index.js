@@ -17,7 +17,7 @@ class AdminStorageNew extends Component {
           <Main fullWidth>
             <ScreenName>Admin::Storage - New product</ScreenName>
 
-            <ProductForm />
+            <ProductForm {...this.props} />
           </Main>
         </Content>
 

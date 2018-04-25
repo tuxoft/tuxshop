@@ -15,13 +15,20 @@ class AdminStorage extends Component {
   }
 
   deleteProduct = async product => {
-    await this.props.deleteProduct({
-      variables: {
-        id: product.id,
-      },
-    });
-
-    this.props.products.refetch();
+    try {
+      await this.props.deleteProduct({
+        variables: {
+          id: product.id
+        }
+      });
+  
+      this.props.products.refetch();
+    } catch (error) {
+      // Logout on errors for now
+      // We should be able to pass error type to handle it properly
+      // somehow in the future
+      this.props.auth.logout();
+    }
   };
 
   render() {
@@ -66,5 +73,5 @@ const deleteProduct = gql`
 
 export default compose(
   graphql(getProducts, { name: "products" }),
-  graphql(deleteProduct, { name: "deleteProduct" }),
+  graphql(deleteProduct, { name: "deleteProduct" })
 )(AdminStorage);

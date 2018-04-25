@@ -37,7 +37,10 @@ class ProductForm extends Component {
         }
       });
     } catch (error) {
-      console.log("createProduct: ", error);
+      // Logout on errors for now
+      // We should be able to pass error type to handle it properly
+      // somehow in the future
+      this.props.auth.logout();
     }
 
     history.push("/admin/storage");
