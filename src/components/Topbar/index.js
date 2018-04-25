@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { CartContext } from "../../lib/Cart";
 import { AuthContext } from "../../lib/Auth";
 import * as styles from "./styles";
@@ -8,49 +9,73 @@ const Fragment = React.Fragment;
 const CartConsumer = CartContext.Consumer;
 const AuthConsumer = AuthContext.Consumer;
 
-const Topbar = props => (
-  <CartConsumer>
-    {({ cart }) => (
-      <styles.Topbar {...props}>
-        <styles.Container>
-          <styles.Brand>
-            <styles.BrandLink to="/">Tux Shop</styles.BrandLink>
-          </styles.Brand>
+class Topbar extends Component {
+  state = {
+    search: {
+      query: ""
+    }
+  };
 
-          <styles.Nav>
-            <styles.NavItem to="/">Search</styles.NavItem>
-            <styles.NavItem to="/cart">
-              Cart ({cart.products.length})
-            </styles.NavItem>
+  handleSearchQuery = e => {
+    this.setState({
+      search: {
+        query: e.target.value
+      }
+    });
+  };
 
-            <AuthConsumer>
-              {({ logout, isAuthenticated }) => (
-                <span>
-                  {isAuthenticated() ? (
-                    <Fragment>
-                      <styles.NavItem to="/admin/storage">
-                        Storage
-                      </styles.NavItem>
+  render() {
+    return (
+      <CartConsumer>
+        {({ cart }) => (
+          <styles.Topbar {...this.props}>
+            <styles.Container>
+              <styles.Brand>
+                <styles.BrandLink to="/">Tux Shop</styles.BrandLink>
+              </styles.Brand>
 
-                      <styles.NavItem to="/admin/orders">
-                        Orders
-                      </styles.NavItem>
+              <styles.Search>
+                <styles.SearchInput
+                  value={this.state.search.query}
+                  onChange={this.handleSearchQuery}
+                />
+              </styles.Search>
 
-                      <styles.Logout onClick={() => logout()}>
-                        Logout
-                      </styles.Logout>
-                    </Fragment>
-                  ) : (
-                    <styles.NavItem to="/login">Login</styles.NavItem>
+              <styles.Nav>
+                <styles.NavItem to="/cart">
+                  Cart ({cart.products.length})
+                </styles.NavItem>
+
+                <AuthConsumer>
+                  {({ logout, isAuthenticated }) => (
+                    <span>
+                      {isAuthenticated() ? (
+                        <Fragment>
+                          <styles.NavItem to="/admin/storage">
+                            Storage
+                          </styles.NavItem>
+
+                          <styles.NavItem to="/admin/orders">
+                            Orders
+                          </styles.NavItem>
+
+                          <styles.Logout onClick={() => logout()}>
+                            Logout
+                          </styles.Logout>
+                        </Fragment>
+                      ) : (
+                        <styles.NavItem to="/login">Login</styles.NavItem>
+                      )}
+                    </span>
                   )}
-                </span>
-              )}
-            </AuthConsumer>
-          </styles.Nav>
-        </styles.Container>
-      </styles.Topbar>
-    )}
-  </CartConsumer>
-);
+                </AuthConsumer>
+              </styles.Nav>
+            </styles.Container>
+          </styles.Topbar>
+        )}
+      </CartConsumer>
+    );
+  }
+}
 
-export default Topbar;
+export default withRouter(Topbar);

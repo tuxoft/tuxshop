@@ -33,8 +33,22 @@ export const BrandLink = styled(props => <Link {...props} />)`
   text-decoration: none;
 `;
 
-export const Nav = styled.nav`
+export const Search = styled.div`
   margin-left: auto;
+`;
+
+export const SearchInput = styled.input.attrs({
+  type: "text",
+  placeholder: "Search products..."
+})`
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #f1f1f1;
+  border-radius: 100px;
+`;
+
+export const Nav = styled.nav`
   display: flex;
   align-items: center;
 `;
