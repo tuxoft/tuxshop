@@ -9,7 +9,7 @@ module.exports = (_, { order }) => {
   return saveOrder({
     ...order,
     status: "pending",
-    idempotenceKey,
+    idempotenceKey
   }).then(storedOrder => {
     const id = storedOrder.generated_keys[0];
 
@@ -17,7 +17,7 @@ module.exports = (_, { order }) => {
       return updateOrder(id, {
         ...order,
         paymentId: kassaResponse.payment_id,
-        confirmationUrl: kassaResponse.confirmation_url,
+        confirmationUrl: kassaResponse.confirmation_url
       }).then(() => {
         return getOrderById(id).then(updatedOrder => {
           return updatedOrder;
