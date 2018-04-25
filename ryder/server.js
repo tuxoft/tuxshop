@@ -82,6 +82,7 @@ app.get("/logout", (req, res) => {
       return next(error);
     }
 
+    res.clearCookie("connect.sid");
     res.status(200).send("OK");
   });
 });

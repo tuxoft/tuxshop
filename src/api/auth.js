@@ -15,7 +15,7 @@ const Auth = {
     });
   },
   logout: () => {
-    return fetch("http://localhost:4000/logout");
+    return fetch("http://localhost:4000/logout", { credentials: "include" });
   },
   getCurrentUser: () => {
     return fetch("http://localhost:4000/user", {
