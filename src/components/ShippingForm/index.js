@@ -98,6 +98,8 @@ const ShippingForm = ({
           </styles.SubmitButton>
         </styles.FormGroup>
       </styles.Form>
+
+      <styles.BackToCartLink to="/cart">Back to cart</styles.BackToCartLink>
     </styles.ShippingForm>
   );
 };

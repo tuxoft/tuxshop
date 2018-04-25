@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import ButtonComponent from "../Button";
 
 export const ShippingForm = styled.div`
@@ -7,6 +9,13 @@ export const ShippingForm = styled.div`
 
 export const Title = styled.h3`
   margin: 0 0 1rem 0;
+`;
+
+export const BackToCartLink = styled(props => <Link {...props} />)`
+  display: inline-block;
+  margin-top: 2rem;
+  color: #000;
+  text-decoration: none;
 `;
 
 export const Form = styled.form`
