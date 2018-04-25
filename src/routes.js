@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomeScreen from "./screens/Home";
 import CartScreen from "./screens/Cart";
@@ -6,9 +6,7 @@ import CheckoutScreen from "./screens/Checkout";
 import LoginScreen from "./screens/Login";
 import AdminStorageScreen from "./screens/Admin/Storage";
 import AdminStorageNewScreen from "./screens/Admin/StorageNew";
-import { AuthContext } from "./lib/Auth";
-
-const AuthConsumer = AuthContext.Consumer;
+import Api from "./api";
 
 const ProtectedRoute = ({ component: Component, ...restProps }) => (
   <Route
@@ -21,8 +19,8 @@ const ProtectedRoute = ({ component: Component, ...restProps }) => (
           to={{
             pathname: "/login",
             state: {
-              from: props.location,
-            },
+              from: props.location
+            }
           }}
         />
       )
@@ -30,9 +28,23 @@ const ProtectedRoute = ({ component: Component, ...restProps }) => (
   />
 );
 
-const Routes = props => (
-  <AuthConsumer>
-    {({ isAuthenticated }) => (
+class Routes extends Component {
+  async componentDidMount() {
+    try {
+      const response = await Api.auth.getCurrentUser();
+
+      // Logout if we are not authenticated on the server
+      if (response.status === 401) {
+        this.props.auth.logout();
+      }
+    } catch (error) {
+      // Logout on error
+      this.props.auth.logout();
+    }
+  }
+
+  render() {
+    return (
       <Switch>
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/cart" component={CartScreen} />
@@ -43,7 +55,7 @@ const Routes = props => (
           exact
           path="/login"
           render={props =>
-            isAuthenticated() ? (
+            this.props.auth.isAuthenticated() ? (
               <Redirect to={{ pathname: "/" }} />
             ) : (
               <LoginScreen {...props} />
@@ -55,18 +67,18 @@ const Routes = props => (
           exact
           path="/admin/storage"
           component={AdminStorageScreen}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={this.props.auth.isAuthenticated}
         />
 
         <ProtectedRoute
           exact
           path="/admin/storage/new"
           component={AdminStorageNewScreen}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={this.props.auth.isAuthenticated}
         />
       </Switch>
-    )}
-  </AuthConsumer>
-);
+    );
+  }
+}
 
 export { Routes };

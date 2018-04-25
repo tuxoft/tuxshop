@@ -23,9 +23,7 @@ const Auth = {
       headers: {
         "Content-Type": "application/json"
       }
-    })
-      .then(res => res.json())
-      .then(res => res.user);
+    });
   }
 };
 

@@ -26,9 +26,12 @@ class LoginForm extends Component {
     Api.auth
       .login({ email, password })
       .then(res => {
-        Api.auth.getCurrentUser().then(user => {
-          this.props.auth.login(user);
-        });
+        Api.auth.getCurrentUser()
+          .then(res => res.json())
+          .then(res => res.user)
+          .then(user => {
+            this.props.auth.login(user);
+          });
       })
       .catch(error => {
         console.error("error: ", error);

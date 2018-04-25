@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import { CartProvider } from "../../lib/Cart";
-import { AuthProvider } from "../../lib/Auth";
+import { AuthProvider, AuthContext } from "../../lib/Auth";
 import { Routes } from "../../routes";
-import Api from "../../api";
+
+const AuthConsumer = AuthContext.Consumer;
 
 class App extends Component {
-  componentDidMount() {
-    Api.auth.getCurrentUser()
-      .then(currentUser => {
-        console.log(currentUser);
-      });
-  }
-
   render() {
     return (
       <AuthProvider>
-        <CartProvider>
-          <Routes />
-        </CartProvider>
+        <AuthConsumer>
+          {(auth) => (
+            <CartProvider>
+              <Routes auth={auth} />
+            </CartProvider>
+          )}
+        </AuthConsumer>
       </AuthProvider>
     );
   }
