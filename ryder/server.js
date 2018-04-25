@@ -91,7 +91,13 @@ app.use(
     schema,
     context: {
       user: req.user
-    }
+    },
+    formatError: error => ({
+      message: error.message,
+      type: error.originalError && error.originalError.type,
+      locations: error.locations,
+      path: error.path,
+    }),
   }))
 );
 
