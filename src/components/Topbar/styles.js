@@ -12,8 +12,8 @@ export const Topbar = styled.header`
     height: 100px;
   }
 
-  // Desktop
-  @media (min-width: 600px) {
+  // Large
+  @media (min-width: 1800px) {
     height: 200px;
   }
 `;

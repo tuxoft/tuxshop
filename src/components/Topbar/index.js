@@ -32,6 +32,10 @@ const Topbar = props => (
                         Storage
                       </styles.NavItem>
 
+                      <styles.NavItem to="/admin/orders">
+                        Orders
+                      </styles.NavItem>
+
                       <styles.Logout onClick={() => logout()}>
                         Logout
                       </styles.Logout>
