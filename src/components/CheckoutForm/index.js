@@ -15,8 +15,8 @@ class CheckoutForm extends Component {
       country: "",
       address: "",
       city: "",
-      zipcode: "",
-    },
+      zipcode: ""
+    }
   };
 
   componentDidUpdate(prevProps) {
@@ -44,8 +44,8 @@ class CheckoutForm extends Component {
     this.setState({
       shipping: {
         ...this.state.shipping,
-        [e.target.name]: e.target.value,
-      },
+        [e.target.name]: e.target.value
+      }
     });
   };
 
@@ -73,20 +73,22 @@ class CheckoutForm extends Component {
     }
 
     const order = {
-      products: this.props.cart.products.map(({__typename, ...filteredProduct}) => ({...filteredProduct})),
+      products: this.props.cart.products.map(
+        ({ __typename, ...filteredProduct }) => ({ ...filteredProduct })
+      ),
       amount: this.props.cart.products.reduce(
         (amount, product) => amount + product.price,
-        0,
+        0
       ),
-      email: this.state.shipping.email,
+      email: this.state.shipping.email
     };
 
     const { createOrder } = this.props;
 
     createOrder({
       variables: {
-        order,
-      },
+        order
+      }
     }).then(({ data }) => {
       // Clean cart
       // Products should be available from order
@@ -107,7 +109,9 @@ class CheckoutForm extends Component {
         </styles.Block>
 
         <styles.Block>
-          <OrderProducts order={this.props.getOrder && this.props.getOrder.order} />
+          <OrderProducts
+            order={this.props.getOrder && this.props.getOrder.order}
+          />
         </styles.Block>
 
         <styles.Block>
@@ -121,7 +125,9 @@ class CheckoutForm extends Component {
         </styles.Block>
 
         <styles.Block>
-          <PaymentStatus order={this.props.getOrder && this.props.getOrder.order} />
+          <PaymentStatus
+            order={this.props.getOrder && this.props.getOrder.order}
+          />
         </styles.Block>
       </styles.CheckoutForm>
     );
@@ -161,7 +167,7 @@ export default compose(
     skip: ({ match }) => !match.params.id,
     options: ownProps => ({
       variables: { id: ownProps.match.params.id },
-      pollInterval: 10000, // Poll every 10 seconds waiting order status changes from "pending" to "paid" or "failed_to_pay"
-    }),
-  }),
+      pollInterval: 10000 // Poll every 10 seconds waiting order status changes from "pending" to "paid" or "failed_to_pay"
+    })
+  })
 )(CheckoutForm);
