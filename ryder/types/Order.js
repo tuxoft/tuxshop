@@ -1,4 +1,13 @@
 const Order = `
+  type Shipping {
+    email: String
+    fullName: String
+    country: String
+    address: String
+    city: String
+    zipcode: String
+  }
+
   type Order {
     id: ID!
     products: [Product]!
@@ -8,6 +17,7 @@ const Order = `
     confirmationUrl: String
     paymentId: String
     idempotenceKey: String
+    shipping: Shipping!
   }
 
   input ProductList {
@@ -15,6 +25,15 @@ const Order = `
     title: String!
     price: Float!
     author: String
+  }
+
+  input ShippingInput {
+    email: String!
+    fullName: String!
+    country: String!
+    address: String!
+    city: String!
+    zipcode: String!
   }
 
   input OrderInput {
@@ -25,6 +44,7 @@ const Order = `
     paymentId: String
     idempotenceKey: String
     status: String
+    shipping: ShippingInput!
   }
 
   extend type Query {
