@@ -28,6 +28,11 @@ export const Brand = styled.h1`
   margin: 0;
 `;
 
+export const BrandLink = styled(props => <Link {...props} />)`
+  color: #000;
+  text-decoration: none;
+`;
+
 export const Nav = styled.nav`
   margin-left: auto;
   display: flex;

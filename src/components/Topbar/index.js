@@ -13,7 +13,9 @@ const Topbar = props => (
     {({ cart }) => (
       <styles.Topbar {...props}>
         <styles.Container>
-          <styles.Brand>Tux Shop</styles.Brand>
+          <styles.Brand>
+            <styles.BrandLink to="/">Tux Shop</styles.BrandLink>
+          </styles.Brand>
 
           <styles.Nav>
             <styles.NavItem to="/">Search</styles.NavItem>
@@ -26,7 +28,9 @@ const Topbar = props => (
                 <span>
                   {isAuthenticated() ? (
                     <Fragment>
-                      <styles.NavItem to="/admin/storage">Admin::Storage</styles.NavItem>
+                      <styles.NavItem to="/admin/storage">
+                        Storage
+                      </styles.NavItem>
 
                       <styles.Logout onClick={() => logout()}>
                         Logout
