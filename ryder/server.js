@@ -77,7 +77,7 @@ app.post("/login", passport.authenticate("local"), (req, res) => {
 app.get("/logout", (req, res) => {
   req.logout();
 
-  req.session.save(error => {
+  req.session.destroy(error => {
     if (error) {
       return next(error);
     }
