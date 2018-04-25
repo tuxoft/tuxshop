@@ -7,6 +7,7 @@ const Order = `
     email: String!
     confirmationUrl: String
     paymentId: String
+    idempotenceKey: String
   }
 
   input ProductList {
@@ -20,6 +21,10 @@ const Order = `
     products: [ProductList]!
     amount: Float!
     email: String!
+    confirmationUrl: String
+    paymentId: String
+    idempotenceKey: String
+    status: String
   }
 
   extend type Query {
@@ -29,7 +34,8 @@ const Order = `
 
   extend type Mutation {
     addOrder(order: OrderInput): Order
-    updateOrder(id: String!, order: OrderInput): Order
+    updateOrder(id: ID!, order: OrderInput): Order
+    updateOrderWithPayment(id: ID!, order: OrderInput): Order
   }
 `;
 

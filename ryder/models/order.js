@@ -6,8 +6,6 @@ const getOrderById = (id) => {
     .get(id)
     .run()
     .then(result => {
-      console.log(result);
-
       return result;
     });
 };

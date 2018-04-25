@@ -72,33 +72,52 @@ class CheckoutForm extends Component {
       return false;
     }
 
-    const order = {
-      products: this.props.cart.products.map(
-        ({ __typename, ...filteredProduct }) => ({ ...filteredProduct })
-      ),
-      amount: this.props.cart.products.reduce(
-        (amount, product) => amount + product.price,
-        0
-      ),
-      email: this.state.shipping.email
-    };
+    const { createOrder, updateOrderWithPayment } = this.props;
 
-    const { createOrder } = this.props;
+    // Do not create a new order in case we try to purchase again
+    // after failed payment. Just pay and update the existing order.
+    if (this.props.getOrder && this.props.getOrder.order) {
+      const { __typename, id, ...order } = this.props.getOrder.order;
 
-    createOrder({
-      variables: {
-        order
-      }
-    }).then(({ data }) => {
-      // Clean cart
-      // Products should be available from order
-      console.log(this.props.cart);
+      updateOrderWithPayment({
+        variables: {
+          id: this.props.getOrder.order.id,
+          order: {
+            ...order,
+            products: order.products.map(
+              ({ __typename, ...filteredProduct }) => filteredProduct
+            )
+          }
+        }
+      }).then(({ data }) => {
+        // Redirect to payment
+        window.location = data.updateOrderWithPayment.confirmationUrl;
+      });
+    } else {
+      const order = {
+        products: this.props.cart.products.map(
+          ({ __typename, ...filteredProduct }) => filteredProduct
+        ),
+        amount: this.props.cart.products.reduce(
+          (amount, product) => amount + product.price,
+          0
+        ),
+        email: this.state.shipping.email
+      };
 
-      this.props.clearCart();
+      createOrder({
+        variables: {
+          order
+        }
+      }).then(({ data }) => {
+        // Clean cart
+        // Products should be available from order
+        this.props.clearCart();
 
-      // Redirect to payment
-      window.location = data.addOrder.confirmationUrl;
-    });
+        // Redirect to payment
+        window.location = data.addOrder.confirmationUrl;
+      });
+    }
   };
 
   render() {
@@ -143,6 +162,15 @@ const createOrder = gql`
   }
 `;
 
+const updateOrderWithPayment = gql`
+  mutation updateOrderWithPayment($id: ID!, $order: OrderInput) {
+    updateOrderWithPayment(id: $id, order: $order) {
+      paymentId
+      confirmationUrl
+    }
+  }
+`;
+
 const getOrder = gql`
   query GetOrder($id: ID!) {
     order(id: $id) {
@@ -151,6 +179,7 @@ const getOrder = gql`
         id
         title
         price
+        author
       }
       status
       amount
@@ -162,6 +191,7 @@ const getOrder = gql`
 
 export default compose(
   graphql(createOrder, { name: "createOrder" }),
+  graphql(updateOrderWithPayment, { name: "updateOrderWithPayment" }),
   graphql(getOrder, {
     name: "getOrder",
     skip: ({ match }) => !match.params.id,
