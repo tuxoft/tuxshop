@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { graphql, compose } from "react-apollo";
-import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
-import { productInfo } from "../../graphql/fragments/products/productInfo";
+import { withRouter } from "react-router-dom";
+// import { productInfo } from "../../graphql/fragments/products/productInfo";
 import * as styles from "./styles";
 
 class ProductForm extends Component {
-  state = {
+  state = this.props.product || {
     title: "",
     author: "",
-    price: 0.0,
+    description: "",
+    price: 0,
+    coverUrl: "",
     quantity: 0,
     type: "book"
   };
@@ -27,16 +29,27 @@ class ProductForm extends Component {
       return false;
     }
 
-    const { createProduct, history } = this.props;
+    const { createProduct, updateProduct, history } = this.props;
 
     const product = this.state;
 
     try {
-      await createProduct({
-        variables: {
-          product
-        }
-      });
+      if (this.props.product) {
+        const { id, __typename, ...productInput } = product;
+
+        await updateProduct({
+          variables: {
+            id: this.props.product.id,
+            product: productInput
+          }
+        });
+      } else {
+        await createProduct({
+          variables: {
+            product
+          }
+        });
+      }
     } catch (error) {
       // Logout on errors for now
       // We should be able to pass error type to handle it properly
@@ -64,7 +77,7 @@ class ProductForm extends Component {
             <styles.FormLabel>Title</styles.FormLabel>
             <styles.FormInput
               name="title"
-              value={this.state.email}
+              value={this.state.title}
               onChange={this.handleInputChange}
               required
               disabled={this.isSubmitting()}
@@ -146,25 +159,34 @@ const createProduct = gql`
   }
 `;
 
-const getProduct = gql`
-  query GetProduct($id: ID!) {
-    product(id: $id) {
-      ... productInfo
+const updateProduct = gql`
+  mutation UpdateProduct($id: ID!, $product: ProductInput) {
+    updateProduct(id: $id, product: $product) {
+      id
     }
   }
-  
-  ${productInfo}
 `;
+
+// const getProduct = gql`
+//   query GetProduct($id: ID!) {
+//     product(id: $id) {
+//       ...productInfo
+//     }
+//   }
+
+//   ${productInfo}
+// `;
 
 export default withRouter(
   compose(
     graphql(createProduct, { name: "createProduct" }),
-    graphql(getProduct, {
-      name: "getProduct",
-      skip: ({ match }) => !match.params.id,
-      options: ownProps => ({
-        variables: { id: ownProps.match.params.id }
-      })
-    })
+    graphql(updateProduct, { name: "updateProduct" })
+    // graphql(getProduct, {
+    //   name: "getProduct",
+    //   skip: ({ match }) => !match.params.id,
+    //   options: ownProps => ({
+    //     variables: { id: ownProps.match.params.id }
+    //   })
+    // })
   )(ProductForm)
 );
