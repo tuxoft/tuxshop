@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as storage from "./localStorage";
+import Api from "../api";
 
 export const AuthContext = React.createContext("auth");
 
@@ -16,7 +17,7 @@ export class AuthProvider extends Component {
   };
 
   logout = () => {
-    fetch("http://localhost:4000/logout").then(() => {
+    Api.auth.logout().then(() => {
       this.setState(
         {
           user: null
