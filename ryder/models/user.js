@@ -24,20 +24,24 @@ const getUser = async input => {
 };
 
 const getUserById = id => {
-  return db
-    .table("users")
-    .get(id)
-    // .pluck("id", "email")
-    .run();
+  return (
+    db
+      .table("users")
+      .get(id)
+      // .pluck("id", "email")
+      .run()
+  );
 };
 
 const getUserByEmail = email => {
-  return db
-    .table("users")
-    .getAll(email, { index: "email" })
-    // .pluck("id", "email")
-    .run()
-    .then(results => (results.length > 0 ? results[0] : null));
+  return (
+    db
+      .table("users")
+      .getAll(email, { index: "email" })
+      // .pluck("id", "email")
+      .run()
+      .then(results => (results.length > 0 ? results[0] : null))
+  );
 };
 
 const createUser = user => {
@@ -47,7 +51,7 @@ const createUser = user => {
   const userInput = {
     ...user,
     salt,
-    password: encryptPassword(password, salt),
+    password: encryptPassword(password, salt)
   };
 
   return db
@@ -74,5 +78,5 @@ module.exports = {
   createUser,
   updateUser,
   authenticate,
-  encryptPassword,
+  encryptPassword
 };
