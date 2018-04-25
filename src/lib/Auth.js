@@ -7,23 +7,25 @@ export class AuthProvider extends Component {
   login = user => {
     this.setState(
       {
-        user,
+        user
       },
       () => {
         storage.store("user", this.state.user);
-      },
+      }
     );
   };
 
   logout = () => {
-    this.setState(
-      {
-        user: null,
-      },
-      () => {
-        storage.store("user", this.state.user);
-      },
-    );
+    fetch("http://localhost:4000/logout").then(() => {
+      this.setState(
+        {
+          user: null
+        },
+        () => {
+          storage.store("user", this.state.user);
+        }
+      );
+    });
   };
 
   isAuthenticated = () => {
@@ -34,7 +36,7 @@ export class AuthProvider extends Component {
     user: storage.load("user") || null,
     login: this.login,
     logout: this.logout,
-    isAuthenticated: this.isAuthenticated,
+    isAuthenticated: this.isAuthenticated
   };
 
   render() {

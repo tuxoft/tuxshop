@@ -4,12 +4,12 @@ import * as styles from "./styles";
 class LoginForm extends Component {
   state = {
     email: "",
-    password: "",
+    password: ""
   };
 
   handleInputChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -26,12 +26,12 @@ class LoginForm extends Component {
       method: "POST",
       body: JSON.stringify({
         email,
-        password,
+        password
       }),
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     })
       .then(res => {
         console.log("response: ", res);
@@ -39,8 +39,8 @@ class LoginForm extends Component {
         fetch("http://localhost:4000/user", {
           credentials: "include",
           headers: {
-            "Content-Type": "application/json",
-          },
+            "Content-Type": "application/json"
+          }
         })
           .then(res => res.json())
           .then(res => {
