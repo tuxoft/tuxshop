@@ -13,7 +13,7 @@ const ProtectedRoute = ({ component: Component, ...restProps }) => (
     {...restProps}
     render={props =>
       restProps.isAuthenticated() ? (
-        <Component {...props} />
+        <Component auth={restProps.auth} {...props} />
       ) : (
         <Redirect
           to={{
@@ -67,6 +67,7 @@ class Routes extends Component {
           exact
           path="/admin/storage"
           component={AdminStorageScreen}
+          auth={this.props.auth}
           isAuthenticated={this.props.auth.isAuthenticated}
         />
 
@@ -74,6 +75,7 @@ class Routes extends Component {
           exact
           path="/admin/storage/new"
           component={AdminStorageNewScreen}
+          auth={this.props.auth}
           isAuthenticated={this.props.auth.isAuthenticated}
         />
       </Switch>
