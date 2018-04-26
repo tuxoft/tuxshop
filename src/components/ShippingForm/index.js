@@ -1,13 +1,13 @@
 import React from "react";
+import PaymentStatus from "../PaymentStatus";
 import * as styles from "./styles";
 
-const orderInPendingOrPaid = (order) => {
+const orderInPendingOrPaid = order => {
   if (!order) {
     return false;
   }
 
-  return order.status === "pending" ||
-    order.status === "paid";
+  return order.status === "pending" || order.status === "paid";
 };
 
 const ShippingForm = ({
@@ -15,7 +15,7 @@ const ShippingForm = ({
   shipping,
   isValid,
   handleInputChange,
-  handleSubmit,
+  handleSubmit
 }) => {
   if (order && order.status === "paid") {
     return null;
@@ -93,11 +93,16 @@ const ShippingForm = ({
         </styles.FormGroup>
 
         <styles.FormGroup>
-          <styles.SubmitButton disabled={!isValid || orderInPendingOrPaid(order)} onClick={handleSubmit}>
+          <styles.SubmitButton
+            disabled={!isValid || orderInPendingOrPaid(order)}
+            onClick={handleSubmit}
+          >
             Purchase with Kassa
           </styles.SubmitButton>
         </styles.FormGroup>
       </styles.Form>
+
+      <PaymentStatus order={order} />
 
       <styles.BackToCartLink to="/cart">Back to cart</styles.BackToCartLink>
     </styles.ShippingForm>

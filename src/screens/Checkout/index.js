@@ -24,7 +24,13 @@ class CheckoutScreen extends Component {
             <ScreenName>Checkout</ScreenName>
 
             <CartConsumer>
-              {({ cart, clearCart }) => <CheckoutForm cart={cart} clearCart={clearCart} {...this.props} />}
+              {({ cart, clearCart }) => (
+                <CheckoutForm
+                  cart={cart}
+                  clearCart={clearCart}
+                  {...this.props}
+                />
+              )}
             </CartConsumer>
           </Main>
         </Content>
