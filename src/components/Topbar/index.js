@@ -53,32 +53,31 @@ class Topbar extends Component {
 
   handleSearch = query => {
     if (!query) {
-      this.setState({
+      this.setState(state => ({
         search: {
-          ...this.state.search,
+          ...state.search,
           results: [],
         },
-      });
+      }));
 
       return false;
     }
 
     this.setState(
-      {
+      state => ({
         search: {
-          ...this.state.search,
-          loading: true,
+          ...state.search,
         },
-      },
+      }),
       () => {
         this.fetchProducts(query).then(results => {
-          this.setState({
+          this.setState(state => ({
             search: {
-              ...this.state.search,
+              ...state.search,
               results: results.data.availableProducts,
               loading: false,
             },
-          });
+          }));
         });
       },
     );
@@ -92,6 +91,7 @@ class Topbar extends Component {
         search: {
           ...this.state.search,
           query: e.target.value,
+          loading: true,
         },
       },
       () => {
