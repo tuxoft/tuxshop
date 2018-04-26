@@ -16,6 +16,10 @@ const OrderStatus = ({ order }) => {
       status = "Failed to pay";
       break;
     }
+    case "pending": {
+      status = "Pending";
+      break;
+    }
     default: {
       status = "";
     }
