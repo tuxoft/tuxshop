@@ -1,5 +1,6 @@
 const Product = require("./types/Product");
 const Order = require("./types/Order");
+const scalars = require("./types/scalars");
 
 const Root = `
   type Query {
@@ -15,6 +16,6 @@ const Root = `
   }
 `;
 
-const typeDefs = [Root, Product, Order];
+const typeDefs = [scalars.typeDefs, Root, Product, Order];
 
 module.exports = typeDefs;
