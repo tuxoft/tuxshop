@@ -141,9 +141,25 @@ class Topbar extends Component {
                     </Fragment>
                   )}
 
-                  <styles.SearchDropdownItem>
-                    Перейти к результатам поиска
-                  </styles.SearchDropdownItem>
+                  {!this.state.search.query && (
+                    <styles.SearchDropdownItem>
+                      Enter a search query into the input above
+                    </styles.SearchDropdownItem>
+                  )}
+
+                  {this.state.search.query &&
+                    this.state.search.results.length === 0 && (
+                      <styles.SearchDropdownItem>
+                        Nothing was found
+                      </styles.SearchDropdownItem>
+                    )}
+
+                  {this.state.search.query &&
+                    this.state.search.results.length > 0 && (
+                      <styles.SearchDropdownItem>
+                        View all search results
+                      </styles.SearchDropdownItem>
+                    )}
                 </styles.SearchDropdown>
               </styles.Search>
 
