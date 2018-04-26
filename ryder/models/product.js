@@ -53,7 +53,10 @@ const getAvailableProducts = (options = {}) => {
 const saveProduct = product => {
   return db
     .table("products")
-    .insert(product)
+    .insert({
+      ...product,
+      createdAt: new Date()
+    })
     .run();
 };
 
