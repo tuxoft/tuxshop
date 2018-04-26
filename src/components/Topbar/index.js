@@ -88,17 +88,6 @@ class Topbar extends Component {
     }
   };
 
-  handleSearchQueryBlur = () => {
-    this.setState(state => ({
-      search: {
-        ...state.search,
-        dropdown: {
-          isOpen: false,
-        },
-      },
-    }));
-  };
-
   toggleSearchDropdown = () => {
     this.setState({
       search: {
@@ -125,7 +114,6 @@ class Topbar extends Component {
                   value={this.state.search.query}
                   onChange={this.handleSearchQuery}
                   onFocus={this.handleSearchQueryFocus}
-                  onBlur={this.handleSearchQueryBlur}
                 />
 
                 <styles.SearchDropdown
