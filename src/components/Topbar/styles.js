@@ -67,4 +67,6 @@ export const NavItem = styled(props => <Link {...props} />)`
   }
 `;
 
-export const Logout = styled(ButtonComponent)``;
+export const Logout = styled(ButtonComponent)`
+  padding: 0.5rem 1rem;
+`;

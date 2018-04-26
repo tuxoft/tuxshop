@@ -35,6 +35,7 @@ export const FormInput = styled.input`
 `;
 
 export const SubmitButton = styled(ButtonComponent)`
-  background-color: #1f63e6;
   color: #fff;
+  background-color: #1f63e6;
+  border: 1px solid #1f63e6;
 `;
