@@ -5,7 +5,7 @@ import debounce from "lodash/debounce";
 import { withRouter } from "react-router-dom";
 import { CartContext } from "../../lib/Cart";
 import { AuthContext } from "../../lib/Auth";
-import CartProduct from "../CartProduct";
+import SearchProduct from "../SearchProduct";
 import * as styles from "./styles";
 
 const Fragment = React.Fragment;
@@ -113,7 +113,7 @@ class Topbar extends Component {
   render() {
     return (
       <CartConsumer>
-        {({ cart }) => (
+        {(cart) => (
           <styles.Topbar {...this.props}>
             <styles.Container>
               <styles.Brand>
@@ -136,7 +136,7 @@ class Topbar extends Component {
                     <Fragment>
                       {this.state.search.results.map(product => (
                         <styles.SearchDropdownItem key={product.id}>
-                          <CartProduct product={product} inCheckout />
+                          <SearchProduct product={product} cart={cart} />
                         </styles.SearchDropdownItem>
                       ))}
                     </Fragment>
@@ -150,7 +150,7 @@ class Topbar extends Component {
 
               <styles.Nav>
                 <styles.NavItem to="/cart">
-                  Cart ({cart.products.length})
+                  Cart ({cart.cart.products.length})
                 </styles.NavItem>
 
                 <AuthConsumer>
