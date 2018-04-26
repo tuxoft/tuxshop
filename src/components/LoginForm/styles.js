@@ -38,4 +38,10 @@ export const SubmitButton = styled(ButtonComponent)`
   color: #fff;
   background-color: #1f63e6;
   border: 1px solid #1f63e6;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #1f63e6;
+  }
 `;
