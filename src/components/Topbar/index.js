@@ -21,6 +21,7 @@ class Topbar extends Component {
         isOpen: false,
       },
       results: [],
+      loading: false,
     },
   };
 
@@ -49,25 +50,36 @@ class Topbar extends Component {
       return false;
     }
 
-    this.props.client
-      .query({
-        query: getAvailableProducts,
-        variables: {
-          options: {
-            query,
-            limit: 3,
-          },
+    this.setState(
+      {
+        search: {
+          ...this.state.search,
+          loading: true,
         },
-        fetchPolicy: "network-only",
-      })
-      .then(results => {
-        this.setState({
-          search: {
-            ...this.state.search,
-            results: results.data.availableProducts,
-          },
-        });
-      });
+      },
+      () => {
+        this.props.client
+          .query({
+            query: getAvailableProducts,
+            variables: {
+              options: {
+                query,
+                limit: 3,
+              },
+            },
+            fetchPolicy: "network-only",
+          })
+          .then(results => {
+            this.setState({
+              search: {
+                ...this.state.search,
+                results: results.data.availableProducts,
+                loading: false,
+              },
+            });
+          });
+      },
+    );
   };
 
   handleSearchDebounced = debounce(this.handleSearch, 500);
@@ -148,6 +160,7 @@ class Topbar extends Component {
                   )}
 
                   {this.state.search.query &&
+                    !this.state.search.loading &&
                     this.state.search.results.length === 0 && (
                       <styles.SearchDropdownItem>
                         Nothing was found
@@ -155,6 +168,7 @@ class Topbar extends Component {
                     )}
 
                   {this.state.search.query &&
+                    !this.state.search.loading &&
                     this.state.search.results.length > 0 && (
                       <styles.SearchDropdownItem>
                         View all search results
