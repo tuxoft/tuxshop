@@ -16,6 +16,7 @@ export const Nav = styled.nav`
   flex-direction: row;
   height: 80px;
   align-items: center;
+  font-weight: 600;
 
   // Tablet
   @media (min-width: 600px) {

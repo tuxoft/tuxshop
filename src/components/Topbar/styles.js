@@ -56,6 +56,7 @@ export const SearchDropdownItem = styled(props => <DropdownComponent.DropdownMen
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  font-weight: 600;
 `;
 
 export const NavItem = styled(props => <Link {...props} />)`
