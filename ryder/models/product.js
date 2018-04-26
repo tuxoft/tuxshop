@@ -36,6 +36,7 @@ const getProducts = (options = {}) => {
     .table("products")
     .filter(options.type ? { type: options.type } : {})
     .filter(options.query ? filterQuery(options.query) : {})
+    .orderBy("createdAt")
     .limit(options.limit || PRODUCTS_PER_PAGE)
     .run();
 };
@@ -46,6 +47,7 @@ const getAvailableProducts = (options = {}) => {
     .filter(db.row("quantity").gt(0))
     .filter(options.type ? { type: options.type } : {})
     .filter(options.query ? filterQuery(options.query) : {})
+    .orderBy("createdAt")
     .limit(options.limit || PRODUCTS_PER_PAGE)
     .run();
 };
