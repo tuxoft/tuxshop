@@ -2,6 +2,25 @@ const { db } = require("./db");
 
 const PRODUCTS_PER_PAGE = 10;
 
+const filterQuery = query => {
+  const queryPattern = query.toLowerCase();
+
+  return db.or(
+    db
+      .row("title")
+      .downcase()
+      .match(queryPattern),
+    db
+      .row("author")
+      .downcase()
+      .match(queryPattern),
+    db
+      .row("description")
+      .downcase()
+      .match(queryPattern),
+  );
+};
+
 const getProductById = id => {
   return db
     .table("products")
@@ -13,30 +32,20 @@ const getProductById = id => {
 };
 
 const getProducts = (options = {}) => {
-  let filters = {};
-
-  if (options.type) {
-    filters.type = options.type;
-  }
-
   return db
     .table("products")
-    .filter(filters)
+    .filter(options.type ? { type: options.type } : {})
+    .filter(options.query ? filterQuery(options.query) : {})
     .limit(options.limit || PRODUCTS_PER_PAGE)
     .run();
 };
 
 const getAvailableProducts = (options = {}) => {
-  let filters = {};
-
-  if (options.type) {
-    filters.type = options.type;
-  }
-
   return db
     .table("products")
     .filter(db.row("quantity").gt(0))
-    .filter(filters)
+    .filter(options.type ? { type: options.type } : {})
+    .filter(options.query ? filterQuery(options.query) : {})
     .limit(options.limit || PRODUCTS_PER_PAGE)
     .run();
 };
