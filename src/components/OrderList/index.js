@@ -1,14 +1,16 @@
 import React from "react";
 import * as Table from "../Table";
+import Utils from "../../utils";
 import * as styles from "./styles";
 
 const OrderList = ({ orders }) => (
   <styles.OrderList>
     <Table.Table>
       <Table.ColGroup>
-        <Table.Col width="20%" />
         <Table.Col width="10%" />
         <Table.Col width="20%" />
+        <Table.Col width="10%" />
+        <Table.Col width="10%" />
         <Table.Col width="20%" />
         <Table.Col width="20%" />
         <Table.Col width="10%" />
@@ -16,6 +18,7 @@ const OrderList = ({ orders }) => (
 
       <Table.Header>
         <Table.HeaderRow>
+          <Table.HeaderColumn>Created at</Table.HeaderColumn>
           <Table.HeaderColumn>Email</Table.HeaderColumn>
           <Table.HeaderColumn>Amount</Table.HeaderColumn>
           <Table.HeaderColumn>Status</Table.HeaderColumn>
@@ -29,6 +32,11 @@ const OrderList = ({ orders }) => (
         {orders &&
           orders.map(order => (
             <Table.BodyRow key={order.id}>
+              <Table.BodyColumn>
+                <styles.OrderLink to={`/admin/orders/${order.id}`}>
+                  {Utils.formatDate(order.createdAt)}
+                </styles.OrderLink>
+              </Table.BodyColumn>
               <Table.BodyColumn>
                 <styles.OrderLink to={`/admin/orders/${order.id}`}>
                   {order.email}
