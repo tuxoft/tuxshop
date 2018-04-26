@@ -18,6 +18,7 @@ const Order = `
     paymentId: String
     idempotenceKey: String
     shipping: Shipping!
+    createdAt: Date!
   }
 
   input ProductList {

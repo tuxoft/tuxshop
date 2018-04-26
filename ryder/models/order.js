@@ -13,13 +13,17 @@ const getOrderById = (id) => {
 const getOrders = () => {
   return db
     .table("orders")
+    .orderBy("createdAt")
     .run();
 };
 
 const saveOrder = (order) => {
   return db
     .table("orders")
-    .insert(order)
+    .insert({
+      ...order,
+      createdAt: new Date()
+    })
     .run();
 };
 
