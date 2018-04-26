@@ -38,6 +38,17 @@ class Topbar extends Component {
   }
 
   handleSearch = query => {
+    if (!query) {
+      this.setState({
+        search: {
+          ...this.state.search,
+          results: [],
+        },
+      });
+
+      return false;
+    }
+
     this.props.client
       .query({
         query: getAvailableProducts,
@@ -102,7 +113,7 @@ class Topbar extends Component {
   render() {
     return (
       <CartConsumer>
-        {(cart) => (
+        {cart => (
           <styles.Topbar {...this.props}>
             <styles.Container>
               <styles.Brand>
