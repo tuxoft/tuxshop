@@ -38,6 +38,19 @@ class Topbar extends Component {
     }
   }
 
+  fetchProducts = query => {
+    return this.props.client.query({
+      query: getAvailableProducts,
+      variables: {
+        options: {
+          query,
+          limit: 3,
+        },
+      },
+      fetchPolicy: "network-only",
+    });
+  };
+
   handleSearch = query => {
     if (!query) {
       this.setState({
@@ -58,26 +71,15 @@ class Topbar extends Component {
         },
       },
       () => {
-        this.props.client
-          .query({
-            query: getAvailableProducts,
-            variables: {
-              options: {
-                query,
-                limit: 3,
-              },
+        this.fetchProducts(query).then(results => {
+          this.setState({
+            search: {
+              ...this.state.search,
+              results: results.data.availableProducts,
+              loading: false,
             },
-            fetchPolicy: "network-only",
-          })
-          .then(results => {
-            this.setState({
-              search: {
-                ...this.state.search,
-                results: results.data.availableProducts,
-                loading: false,
-              },
-            });
           });
+        });
       },
     );
   };
