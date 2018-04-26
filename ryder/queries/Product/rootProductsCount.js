@@ -1,7 +1,7 @@
-const { getCount } = require("../../models/product");
+const { getProductsCount } = require("../../models/product");
 
 const count = (_, { options = {} }) => {
-  return getCount(options).then(result => {
+  return getProductsCount(options).then(result => {
     return result;
   });
 };

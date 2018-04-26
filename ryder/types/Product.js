@@ -38,6 +38,7 @@ const Product = `
     products(options: ProductOptions): [Product],
     availableProducts(options: ProductOptions): [Product],
     productsCount(options: ProductOptions): Int,
+    availableProductsCount(options: ProductOptions): Int,
   }
 
   extend type Mutation {

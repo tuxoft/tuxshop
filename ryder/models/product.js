@@ -17,13 +17,23 @@ const filterQuery = query => {
     db
       .row("description")
       .downcase()
-      .match(queryPattern),
+      .match(queryPattern)
   );
 };
 
-const getCount = (options = {}) => {
+const getProductsCount = (options = {}) => {
   return db
     .table("products")
+    .filter(options.type ? { type: options.type } : {})
+    .filter(options.query ? filterQuery(options.query) : {})
+    .count()
+    .run();
+};
+
+const getAvailableProductsCount = (options = {}) => {
+  return db
+    .table("products")
+    .filter(db.row("quantity").gt(0))
     .filter(options.type ? { type: options.type } : {})
     .filter(options.query ? filterQuery(options.query) : {})
     .count()
@@ -88,11 +98,12 @@ const deleteProduct = id => {
 };
 
 module.exports = {
-  getCount: getCount,
+  getProductsCount: getProductsCount,
+  getAvailableProductsCount: getAvailableProductsCount,
   getProductById: getProductById,
   getProducts: getProducts,
   getAvailableProducts: getAvailableProducts,
   saveProduct: saveProduct,
   updateProduct: updateProduct,
-  deleteProduct: deleteProduct,
+  deleteProduct: deleteProduct
 };
