@@ -18,10 +18,16 @@ const SearchProduct = ({ product, cart }) => {
       </styles.Header>
 
       <styles.Controls>
-        {!cart.inCart(product) && <styles.Control>Add to cart</styles.Control>}
+        {!cart.inCart(product) && (
+          <styles.Control onClick={() => cart.addToCart(product)}>
+            Add to cart
+          </styles.Control>
+        )}
 
         {cart.inCart(product) && (
-          <styles.Control>Remove from cart</styles.Control>
+          <styles.Control onClick={() => cart.removeFromCart(product)}>
+            Remove from cart
+          </styles.Control>
         )}
       </styles.Controls>
     </styles.SearchProduct>
