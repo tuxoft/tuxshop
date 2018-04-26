@@ -8,5 +8,6 @@ export const orderInfo = gql`
     email
     paymentId
     idempotenceKey
+    createdAt
   }
 `;
