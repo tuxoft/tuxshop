@@ -13,6 +13,7 @@ const Product = `
     price: Float!
     quantity: Int!
     type: ProductType!
+    createdAt: Date!
   }
 
   input ProductInput {
