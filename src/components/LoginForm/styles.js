@@ -34,14 +34,4 @@ export const FormInput = styled.input`
   border: 1px solid #f1f1f1;
 `;
 
-export const SubmitButton = styled(ButtonComponent)`
-  color: #fff;
-  background-color: #1f63e6;
-  border: 1px solid #1f63e6;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: #1f63e6;
-  }
-`;
+export const SubmitButton = styled(ButtonComponent).attrs({ primary: true })``;

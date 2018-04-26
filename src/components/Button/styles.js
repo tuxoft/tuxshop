@@ -20,4 +20,16 @@ export const Button = styled.button.attrs({ type: "button" })`
   &:active {
     background-color: #f1f1f1;
   }
+
+  ${props => props.primary && `
+    color: #fff;
+    background-color: #1f63e6;
+    border: 1px solid #1f63e6;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #1f63e6;
+    }
+  `};
 `;

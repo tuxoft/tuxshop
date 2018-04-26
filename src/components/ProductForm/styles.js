@@ -38,7 +38,4 @@ export const FormSelect = styled.select``;
 
 export const FormSelectOption = styled.option``;
 
-export const SubmitButton = styled(ButtonComponent)`
-  background-color: #1F63E6;
-  color: #fff;
-`;
+export const SubmitButton = styled(ButtonComponent).attrs({ primary: true })``;
