@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ContainerComponent from "../Container";
 import ButtonComponent from "../Button";
+import * as DropdownComponent from "../Dropdown";
 
 export const Topbar = styled.header`
   height: 80px;
@@ -47,6 +48,10 @@ export const SearchInput = styled.input.attrs({
   border: 1px solid #f1f1f1;
   border-radius: 100px;
 `;
+
+export const SearchDropdown = styled(props => <DropdownComponent.DropdownMenu {...props} />)``;
+
+export const SearchDropdownItem = styled(props => <DropdownComponent.DropdownMenuItem {...props} />)``;
 
 export const Nav = styled.nav`
   display: flex;

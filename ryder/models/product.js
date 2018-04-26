@@ -1,5 +1,7 @@
 const { db } = require("./db");
 
+const PRODUCTS_PER_PAGE = 10;
+
 const getProductById = id => {
   return db
     .table("products")
@@ -20,6 +22,7 @@ const getProducts = (options = {}) => {
   return db
     .table("products")
     .filter(filters)
+    .limit(options.limit || PRODUCTS_PER_PAGE)
     .run();
 };
 
@@ -34,6 +37,7 @@ const getAvailableProducts = (options = {}) => {
     .table("products")
     .filter(db.row("quantity").gt(0))
     .filter(filters)
+    .limit(options.limit || PRODUCTS_PER_PAGE)
     .run();
 };
 
@@ -52,7 +56,7 @@ const updateProduct = (id, product) => {
     .run();
 };
 
-const deleteProduct = (id) => {
+const deleteProduct = id => {
   return db
     .table("products")
     .get(id)

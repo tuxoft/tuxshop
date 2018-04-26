@@ -27,8 +27,9 @@ const Product = `
 
   input ProductOptions {
     type: String
-    start: Int
+    skip: Int
     limit: Int
+    query: String
   }
 
   extend type Query {

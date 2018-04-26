@@ -22,9 +22,11 @@
     "rethinkdbdash": "^2.3.31"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "nodemon": "^1.17.3"
   },
   "scripts": {
+    "dev": "nodemon server.js",
     "migrate": "rethinkdb-migrate up -f ./migrations/config.js",
     "console": "node console.js"
   }

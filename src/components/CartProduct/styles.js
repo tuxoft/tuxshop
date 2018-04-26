@@ -10,6 +10,7 @@ export const Cover = styled.div`
   width: 100px;
   background-color: #f1f1f1;
   object-fit: cover;
+  flex-shrink: 0;
 `;
 
 export const Information = styled.div`
