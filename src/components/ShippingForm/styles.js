@@ -16,6 +16,13 @@ export const BackToCartLink = styled(props => <Link {...props} />)`
   margin-top: 2rem;
   color: #000;
   text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid #f1f1f1;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2rem;
 `;
 
 export const Form = styled.form`
