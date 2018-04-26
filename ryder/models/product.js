@@ -21,6 +21,15 @@ const filterQuery = query => {
   );
 };
 
+const getCount = (options = {}) => {
+  return db
+    .table("products")
+    .filter(options.type ? { type: options.type } : {})
+    .filter(options.query ? filterQuery(options.query) : {})
+    .count()
+    .run();
+};
+
 const getProductById = id => {
   return db
     .table("products")
@@ -79,6 +88,7 @@ const deleteProduct = id => {
 };
 
 module.exports = {
+  getCount: getCount,
   getProductById: getProductById,
   getProducts: getProducts,
   getAvailableProducts: getAvailableProducts,
