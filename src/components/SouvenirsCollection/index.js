@@ -2,7 +2,7 @@ import React from "react";
 import Souvenir from "../Souvenir";
 import * as styles from "./styles";
 
-const SouvenirsCollection = ({ souvenirs }) => (
+const SouvenirsCollection = ({ souvenirs, total }) => (
   <styles.SouvenirsCollection>
     {!souvenirs && <styles.Empty>No souvenirs available.</styles.Empty>}
 
