@@ -13,8 +13,12 @@ const Product = ({ product, deleteProduct }) => (
       <styles.Attribute>Quantity: {product.quantity}</styles.Attribute>
 
       <styles.Controls>
-        <styles.EditLink to={`/admin/storage/edit/${product.id}`}>Edit product</styles.EditLink>
-        <styles.Control onClick={() => deleteProduct(product)}>Delete product</styles.Control>
+        <styles.EditLink to={`/admin/storage/edit/${product.id}`}>
+          Edit
+        </styles.EditLink>
+        <styles.Control onClick={() => deleteProduct(product)}>
+          Delete
+        </styles.Control>
       </styles.Controls>
     </styles.Body>
   </styles.Product>

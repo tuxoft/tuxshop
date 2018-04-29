@@ -21,7 +21,9 @@ export const Button = styled.button.attrs({ type: "button" })`
     background-color: #f1f1f1;
   }
 
-  ${props => props.primary && `
+  ${props =>
+    props.primary &&
+    `
     color: #fff;
     background-color: #1f63e6;
     border: 1px solid #1f63e6;
@@ -30,6 +32,20 @@ export const Button = styled.button.attrs({ type: "button" })`
     &:focus,
     &:active {
       background-color: #1f63e6;
+    }
+  `};
+
+  ${props =>
+    props.danger &&
+    `
+    background-color: #E81E12;
+    border: 1px solid #E81E12;
+    color: #fff;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #E81E12;
     }
   `};
 `;

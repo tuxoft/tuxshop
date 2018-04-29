@@ -33,10 +33,7 @@ export const Controls = styled.div`
   margin-top: 1rem;
 `;
 
-export const Control = styled(ButtonComponent)`
-  background-color: #E81E12;
-  border: 1px solid #E81E12;
-  color: #fff;
+export const Control = styled(ButtonComponent).attrs({ danger: true })`
   padding: 0.5rem;
 `;
 
