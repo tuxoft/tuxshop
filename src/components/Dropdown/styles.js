@@ -26,6 +26,10 @@ export const DropdownMenu = styled.ul`
   margin: 10px;
   flex-direction: column;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+  ${props => props.inSearch && `
+    min-width: 300px;
+  `};
 `;
 
 export const DropdownMenuItem = styled.li`

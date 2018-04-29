@@ -49,7 +49,7 @@ export const SearchInput = styled.input.attrs({
   border-radius: 100px;
 `;
 
-export const SearchDropdown = styled(props => <DropdownComponent.DropdownMenu {...props} />)``;
+export const SearchDropdown = styled(props => <DropdownComponent.DropdownMenu inSearch {...props} />)``;
 
 export const SearchDropdownItem = styled(props => <DropdownComponent.DropdownMenuItem {...props} />)``;
 

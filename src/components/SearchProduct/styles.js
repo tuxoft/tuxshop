@@ -28,6 +28,11 @@ export const Title = styled.h4`
   margin: 0 0 1rem 0;
 `;
 
+export const Author = styled.h4`
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+`;
+
 export const Price = styled.span``;
 
 export const Controls = styled.div`

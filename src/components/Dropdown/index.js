@@ -3,7 +3,7 @@ import { Portal } from "react-portal";
 import * as styles from "./styles";
 
 class DropdownMenu extends Component {
-  handleKeyPress = (e) => {
+  handleKeyPress = e => {
     const { isOpen } = this.props;
 
     if (isOpen && e.keyCode === 27) {
@@ -11,16 +11,22 @@ class DropdownMenu extends Component {
     }
   };
 
-  componentDidMount(){
+  componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress, false);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyPress, false);
   }
 
   render() {
-    const { toggleDropdown, isOpen, children, ...restProps } = this.props;
+    const {
+      toggleDropdown,
+      isOpen,
+      children,
+      inSearch,
+      ...restProps
+    } = this.props;
 
     return (
       <styles.DropdownWrapper {...restProps}>
@@ -30,7 +36,9 @@ class DropdownMenu extends Component {
           </Portal>
         )}
 
-        <styles.DropdownMenu isOpen={isOpen}>{children}</styles.DropdownMenu>
+        <styles.DropdownMenu isOpen={isOpen} inSearch={inSearch}>
+          {children}
+        </styles.DropdownMenu>
       </styles.DropdownWrapper>
     );
   }

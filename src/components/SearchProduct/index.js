@@ -13,6 +13,7 @@ const SearchProduct = ({ product, cart }) => {
 
         <styles.Information>
           <styles.Title>{product.title}</styles.Title>
+          <styles.Author>{product.author}</styles.Author>
           <styles.Price>${product.price}</styles.Price>
         </styles.Information>
       </styles.Header>
