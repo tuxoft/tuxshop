@@ -13,11 +13,13 @@ import SouvenirsCollection from "../../components/SouvenirsCollection";
 import Pagination from "../../components/Pagination";
 import Footer from "../../components/Footer";
 
+const PRODUCTS_PER_PAGE = 10;
+
 class HomeScreen extends Component {
   state = {
     pagination: {
       page: 1,
-      limit: 2
+      limit: PRODUCTS_PER_PAGE
     }
   };
 
@@ -30,46 +32,6 @@ class HomeScreen extends Component {
       this.props.souvenirsQuery.refetch();
     }
   }
-
-  // componentDidUpdate(prevProps) {
-  // if (
-  //   prevProps.booksQuery &&
-  //   !prevProps.booksQuery.availableProductsCount &&
-  //   this.props.booksQuery.availableProductsCount
-  // ) {
-  //   console.log(this.props.booksQuery.availableProductsCount);
-
-  //   this.setState(state => ({
-  //     pagination: {
-  //       ...state.pagination,
-  //       total: this.props.booksQuery.availableProductsCount,
-  //       pages: Math.ceil(
-  //         this.props.booksQuery.availableProductsCount /
-  //           state.pagination.limit
-  //       )
-  //     }
-  //   }));
-  // }
-
-  // if (
-  //   prevProps.souvenirsQuery &&
-  //   !prevProps.souvenirsQuery.availableProductsCount &&
-  //   this.props.souvenirsQuery.availableProductsCount
-  // ) {
-  //   console.log(this.props.souvenirsQuery.availableProductsCount);
-
-  //   this.setState(state => ({
-  //     pagination: {
-  //       ...state.pagination,
-  //       total: this.props.souvenirsQuery.availableProductsCount,
-  //       pages: Math.ceil(
-  //         this.props.souvenirsQuery.availableProductsCount /
-  //           state.pagination.limit
-  //       )
-  //     }
-  //   }));
-  // }
-  // }
 
   handlePageChange = page => {
     this.setState(state => ({
@@ -113,13 +75,6 @@ class HomeScreen extends Component {
               />
             )}
 
-            {this.props.souvenirsQuery && (
-              <SouvenirsCollection
-                souvenirs={this.props.souvenirsQuery.availableProducts}
-                total={this.props.souvenirsQuery.availableProductsCount}
-              />
-            )}
-
             {this.props.booksQuery &&
               this.props.booksQuery.availableProducts &&
               this.props.booksQuery.availableProducts.length > 0 && (
@@ -127,6 +82,24 @@ class HomeScreen extends Component {
                   currentPage={this.state.pagination.page}
                   limit={this.state.pagination.limit}
                   total={this.props.booksQuery.availableProductsCount}
+                  onPageSelect={this.handlePageChange}
+                />
+              )}
+
+            {this.props.souvenirsQuery && (
+              <SouvenirsCollection
+                souvenirs={this.props.souvenirsQuery.availableProducts}
+                total={this.props.souvenirsQuery.availableProductsCount}
+              />
+            )}
+
+            {this.props.souvenirsQuery &&
+              this.props.souvenirsQuery.availableProducts &&
+              this.props.souvenirsQuery.availableProducts.length > 0 && (
+                <Pagination
+                  currentPage={this.state.pagination.page}
+                  limit={this.state.pagination.limit}
+                  total={this.props.souvenirsQuery.availableProductsCount}
                   onPageSelect={this.handlePageChange}
                 />
               )}
@@ -169,7 +142,7 @@ export default compose(
     name: "booksQuery",
     options: {
       variables: {
-        limit: 2
+        limit: PRODUCTS_PER_PAGE
       }
     },
     skip: ({ location }) =>
@@ -179,7 +152,7 @@ export default compose(
     name: "souvenirsQuery",
     options: {
       variables: {
-        limit: 2
+        limit: PRODUCTS_PER_PAGE
       }
     },
     skip: ({ location }) =>
