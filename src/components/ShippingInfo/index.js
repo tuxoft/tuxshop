@@ -1,4 +1,5 @@
 import React from "react";
+import Utils from "../../utils";
 import * as styles from "./styles";
 
 const ShippingInfo = ({ order }) => {
@@ -38,6 +39,13 @@ const ShippingInfo = ({ order }) => {
       <styles.Attribute>
         <styles.AttributeName>Zip Code</styles.AttributeName>
         <styles.AttributeValue>{shipping.zipcode}</styles.AttributeValue>
+      </styles.Attribute>
+
+      <styles.Attribute>
+        <styles.AttributeName>Created</styles.AttributeName>
+        <styles.AttributeValue>
+          {Utils.formatDate(order.createdAt)}
+        </styles.AttributeValue>
       </styles.Attribute>
     </styles.ShippingInfo>
   );
