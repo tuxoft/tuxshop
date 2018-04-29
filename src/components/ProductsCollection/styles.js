@@ -18,10 +18,17 @@ export const NewProductLink = styled(props => <Link {...props} />)`
   display: inline-block;
   padding: 1rem;
   border: 1px solid #f1f1f1;
+  border-radius: 2rem;
   background-color: #fff;
   font-size: 1rem;
   cursor: pointer;
   text-decoration: none;
   color: #000;
   margin-top: 1rem;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #f1f1f1;
+  }
 `;
