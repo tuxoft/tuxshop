@@ -10,6 +10,8 @@ export const Product = styled.div`
 `;
 
 export const Header = styled.header`
+  display: flex;
+  align-items: center;
   margin-bottom: 1rem;
 `;
 
@@ -30,7 +32,7 @@ export const Attribute = styled.span`
 `;
 
 export const Controls = styled.div`
-  margin-top: 1rem;
+  margin-left: auto;
 `;
 
 export const Control = styled(ButtonComponent).attrs({ danger: true })`
