@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 import ShippingForm from "../ShippingForm";
 import CartList from "../CartList";
 import OrderProducts from "../OrderProducts";
+import PaymentStatus from "../PaymentStatus";
 import * as styles from "./styles";
 
 class CheckoutForm extends Component {
@@ -162,6 +163,12 @@ class CheckoutForm extends Component {
             isValid={this.isShippingValid()}
             handleInputChange={this.handleShippingInputChange}
             handleSubmit={this.handleShippingSubmit}
+          />
+        </styles.Block>
+
+        <styles.Block>
+          <PaymentStatus
+            order={this.props.getOrder && this.props.getOrder.order}
           />
         </styles.Block>
       </styles.CheckoutForm>

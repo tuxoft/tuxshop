@@ -1,5 +1,4 @@
 import React from "react";
-import PaymentStatus from "../PaymentStatus";
 import * as styles from "./styles";
 
 const orderInPendingOrPaid = order => {
@@ -101,8 +100,6 @@ const ShippingForm = ({
           </styles.SubmitButton>
         </styles.FormGroup>
       </styles.Form>
-
-      <PaymentStatus order={order} />
 
       <styles.BackToCartLink to="/cart">Back to cart</styles.BackToCartLink>
     </styles.ShippingForm>
