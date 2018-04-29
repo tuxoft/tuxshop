@@ -10,17 +10,16 @@ import Sidebar from "../../components/Sidebar";
 import Main from "../../components/Main";
 import BooksCollection from "../../components/BooksCollection";
 import SouvenirsCollection from "../../components/SouvenirsCollection";
+import Pagination from "../../components/Pagination";
 import Footer from "../../components/Footer";
 
 class HomeScreen extends Component {
-  // state = {
-  //   pagination: {
-  //     page: 1,
-  //     total: 0,
-  //     pages: 0,
-  //     limit: 2
-  //   }
-  // };
+  state = {
+    pagination: {
+      page: 1,
+      limit: 2
+    }
+  };
 
   componentDidMount() {
     if (this.props.booksQuery) {
@@ -73,11 +72,18 @@ class HomeScreen extends Component {
   // }
 
   handlePageChange = page => {
+    this.setState(state => ({
+      pagination: {
+        ...state.pagination,
+        page
+      }
+    }));
+
     if (this.props.booksQuery) {
       this.props.booksQuery.fetchMore({
         variables: {
-          limit: 2,
-          skip: 2 * (page - 1)
+          limit: this.state.pagination.limit,
+          skip: this.state.pagination.limit * (page - 1)
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
@@ -104,8 +110,6 @@ class HomeScreen extends Component {
             {this.props.booksQuery && (
               <BooksCollection
                 books={this.props.booksQuery.availableProducts}
-                total={this.props.booksQuery.availableProductsCount}
-                onPageSelect={this.handlePageChange}
               />
             )}
 
@@ -115,6 +119,17 @@ class HomeScreen extends Component {
                 total={this.props.souvenirsQuery.availableProductsCount}
               />
             )}
+
+            {this.props.booksQuery &&
+              this.props.booksQuery.availableProducts &&
+              this.props.booksQuery.availableProducts.length > 0 && (
+                <Pagination
+                  currentPage={this.state.pagination.page}
+                  limit={this.state.pagination.limit}
+                  total={this.props.booksQuery.availableProductsCount}
+                  onPageSelect={this.handlePageChange}
+                />
+              )}
           </Main>
         </Content>
 
