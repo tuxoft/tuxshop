@@ -26,10 +26,19 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const Attribute = styled.span`
-  display: inline-block;
+export const Attribute = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 0.5rem;
 `;
+
+export const AttributeName = styled.h4`
+  font-weight: 500;
+  margin: 0;
+  min-width: 100px;
+`;
+
+export const AttributeValue = styled.span``;
 
 export const Controls = styled.div`
   margin-left: auto;

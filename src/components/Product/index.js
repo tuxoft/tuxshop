@@ -17,9 +17,20 @@ const Product = ({ product, deleteProduct }) => (
     </styles.Header>
 
     <styles.Body>
-      <styles.Attribute>Author: {product.author}</styles.Attribute>
-      <styles.Attribute>Price: ${product.price}</styles.Attribute>
-      <styles.Attribute>Quantity: {product.quantity}</styles.Attribute>
+      <styles.Attribute>
+        <styles.AttributeName>Author</styles.AttributeName>
+        <styles.AttributeValue>{product.author}</styles.AttributeValue>
+      </styles.Attribute>
+
+      <styles.Attribute>
+        <styles.AttributeName>Price</styles.AttributeName>
+        <styles.AttributeValue>${product.price}</styles.AttributeValue>
+      </styles.Attribute>
+
+      <styles.Attribute>
+        <styles.AttributeName>Quantity</styles.AttributeName>
+        <styles.AttributeValue>{product.quantity}</styles.AttributeValue>
+      </styles.Attribute>
     </styles.Body>
   </styles.Product>
 );
