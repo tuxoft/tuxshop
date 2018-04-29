@@ -10,7 +10,7 @@ import Footer from "../../../components/Footer";
 import ProductsCollection from "../../../components/ProductsCollection";
 import Pagination from "../../../components/Pagination";
 
-const PRODUCTS_PER_PAGE = 2;
+const PRODUCTS_PER_PAGE = 10;
 
 class AdminStorage extends Component {
   state = {
