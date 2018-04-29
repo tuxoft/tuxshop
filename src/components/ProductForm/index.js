@@ -74,10 +74,38 @@ class ProductForm extends Component {
       <styles.ProductForm>
         <styles.Form onSubmit={this.handleSubmit}>
           <styles.FormGroup>
+            <styles.FormLabel>Type</styles.FormLabel>
+            <styles.FormSelect
+              name="type"
+              value={this.state.type}
+              onChange={this.handleInputChange}
+              required
+              disabled={this.isSubmitting()}>
+              <styles.FormSelectOption value="book">
+                Book
+              </styles.FormSelectOption>
+              <styles.FormSelectOption value="souvenir">
+                Souvenir
+              </styles.FormSelectOption>
+            </styles.FormSelect>
+          </styles.FormGroup>
+
+          <styles.FormGroup>
             <styles.FormLabel>Title</styles.FormLabel>
             <styles.FormInput
               name="title"
               value={this.state.title}
+              onChange={this.handleInputChange}
+              required
+              disabled={this.isSubmitting()}
+            />
+          </styles.FormGroup>
+
+          <styles.FormGroup>
+            <styles.FormLabel>Description</styles.FormLabel>
+            <styles.FormTextarea
+              name="description"
+              value={this.state.description}
               onChange={this.handleInputChange}
               required
               disabled={this.isSubmitting()}
@@ -120,28 +148,9 @@ class ProductForm extends Component {
           </styles.FormGroup>
 
           <styles.FormGroup>
-            <styles.FormLabel>Type</styles.FormLabel>
-            <styles.FormSelect
-              name="type"
-              value={this.state.type}
-              onChange={this.handleInputChange}
-              required
-              disabled={this.isSubmitting()}
-            >
-              <styles.FormSelectOption value="book">
-                Book
-              </styles.FormSelectOption>
-              <styles.FormSelectOption value="souvenir">
-                Souvenir
-              </styles.FormSelectOption>
-            </styles.FormSelect>
-          </styles.FormGroup>
-
-          <styles.FormGroup>
             <styles.SubmitButton
               disabled={!this.isValid() || this.isSubmitting()}
-              onClick={this.handleSubmit}
-            >
+              onClick={this.handleSubmit}>
               Add product
             </styles.SubmitButton>
           </styles.FormGroup>

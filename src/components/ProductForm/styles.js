@@ -26,9 +26,16 @@ export const FormGroup = styled.div`
 
 export const FormLabel = styled.label`
   margin-bottom: 0.5rem;
+  font-weight: 500;
 `;
 
 export const FormInput = styled.input`
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #f1f1f1;
+`;
+
+export const FormTextarea = styled.textarea`
   padding: 8px;
   font-size: 1rem;
   border: 1px solid #f1f1f1;
