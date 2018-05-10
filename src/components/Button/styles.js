@@ -8,7 +8,7 @@ export const Button = styled.button.attrs({ type: "button" })`
   font-weight: 600;
   cursor: pointer;
   margin: auto 0;
-  border-radius: 2rem;
+  border-radius: 4px;
 
   &:disabled {
     opacity: 0.8;
