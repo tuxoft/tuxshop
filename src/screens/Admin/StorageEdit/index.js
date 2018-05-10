@@ -17,7 +17,7 @@ class AdminStorageEdit extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Admin::Storage - Edit product</ScreenName>
 
             {this.props.getProduct.product && (

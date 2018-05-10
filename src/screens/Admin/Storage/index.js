@@ -69,7 +69,7 @@ class AdminStorage extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Admin::Storage</ScreenName>
 
             <ProductsCollection

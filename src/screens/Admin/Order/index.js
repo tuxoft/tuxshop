@@ -18,7 +18,7 @@ class AdminOrder extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Admin::Order</ScreenName>
 
             {this.props.getOrder &&

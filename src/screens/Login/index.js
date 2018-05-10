@@ -17,7 +17,7 @@ class LoginScreen extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Login</ScreenName>
 
             <AuthConsumer>{auth => <LoginForm auth={auth} />}</AuthConsumer>

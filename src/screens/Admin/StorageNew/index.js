@@ -14,7 +14,7 @@ class AdminStorageNew extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Admin::Storage - New product</ScreenName>
 
             <ProductForm {...this.props} />

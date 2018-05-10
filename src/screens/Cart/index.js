@@ -14,7 +14,7 @@ class CartScreen extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Cart</ScreenName>
 
             <CartList />

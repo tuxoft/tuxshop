@@ -38,7 +38,7 @@ class AdminStorage extends Component {
         <Topbar />
 
         <Content>
-          <Main fullWidth>
+          <Main>
             <ScreenName>Admin::Orders</ScreenName>
 
             <OrderList orders={this.props.orders.orders} />

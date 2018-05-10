@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "./styles";
 
-const Sidebar = (props) => (
+const Sidebar = props => (
   <styles.Sidebar {...props}>
     <styles.Nav>
       <styles.NavItem to="/">Books</styles.NavItem>
