@@ -18,11 +18,11 @@ class Topbar extends Component {
     search: {
       query: "",
       dropdown: {
-        isOpen: false,
+        isOpen: false
       },
       results: [],
-      loading: false,
-    },
+      loading: false
+    }
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -31,9 +31,9 @@ class Topbar extends Component {
         search: {
           ...this.state.search,
           dropdown: {
-            isOpen: true,
-          },
-        },
+            isOpen: true
+          }
+        }
       });
     }
   }
@@ -44,10 +44,10 @@ class Topbar extends Component {
       variables: {
         options: {
           query,
-          limit: 3,
-        },
+          limit: 3
+        }
       },
-      fetchPolicy: "network-only",
+      fetchPolicy: "network-only"
     });
   };
 
@@ -56,8 +56,8 @@ class Topbar extends Component {
       this.setState(state => ({
         search: {
           ...state.search,
-          results: [],
-        },
+          results: []
+        }
       }));
 
       return false;
@@ -66,8 +66,8 @@ class Topbar extends Component {
     this.setState(
       state => ({
         search: {
-          ...state.search,
-        },
+          ...state.search
+        }
       }),
       () => {
         this.fetchProducts(query).then(results => {
@@ -75,11 +75,11 @@ class Topbar extends Component {
             search: {
               ...state.search,
               results: results.data.availableProducts,
-              loading: false,
-            },
+              loading: false
+            }
           }));
         });
-      },
+      }
     );
   };
 
@@ -91,12 +91,12 @@ class Topbar extends Component {
         search: {
           ...this.state.search,
           query: e.target.value,
-          loading: true,
-        },
+          loading: true
+        }
       },
       () => {
         this.handleSearchDebounced(this.state.search.query);
-      },
+      }
     );
   };
 
@@ -106,9 +106,9 @@ class Topbar extends Component {
         search: {
           ...state.search,
           dropdown: {
-            isOpen: true,
-          },
-        },
+            isOpen: true
+          }
+        }
       }));
     }
   };
@@ -118,9 +118,9 @@ class Topbar extends Component {
       search: {
         ...this.state.search,
         dropdown: {
-          isOpen: !this.state.search.dropdown.isOpen,
-        },
-      },
+          isOpen: !this.state.search.dropdown.isOpen
+        }
+      }
     });
   };
 
