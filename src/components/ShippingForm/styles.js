@@ -22,7 +22,7 @@ export const BackToCartLink = styled(props => <Link {...props} />)`
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 2rem;
+  border-radius: 4px;
 `;
 
 export const Form = styled.form`

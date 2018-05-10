@@ -18,7 +18,7 @@ export const NewProductLink = styled(props => <Link {...props} />)`
   display: inline-block;
   padding: 1rem;
   border: 1px solid #f1f1f1;
-  border-radius: 2rem;
+  border-radius: 4px;
   background-color: #fff;
   font-size: 1rem;
   cursor: pointer;

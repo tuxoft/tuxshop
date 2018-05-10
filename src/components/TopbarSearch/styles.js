@@ -14,7 +14,7 @@ export const SearchInput = styled.input.attrs({
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #f1f1f1;
-  border-radius: 100px;
+  border-radius: 4px;
 `;
 
 export const SearchDropdown = styled(props => (

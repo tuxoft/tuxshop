@@ -40,6 +40,6 @@ export const Controls = styled.div`
 `;
 
 export const Control = styled(ButtonComponent)`
-  border-radius: 2rem;
+  border-radius: 4px;
   padding: 0.5rem 1rem;
 `;
