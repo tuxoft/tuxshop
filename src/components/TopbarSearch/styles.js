@@ -3,7 +3,18 @@ import styled from "styled-components";
 import * as DropdownComponent from "../Dropdown";
 
 export const Search = styled.div`
-  margin-left: auto;
+  display: none;
+
+  // Tablet
+  @media (min-width: 600px) {
+    display: block;
+    margin-left: auto;
+  }
+
+  ${props => props.mobile && `
+    display: block;
+    width: 100%;
+  `};
 `;
 
 export const SearchInput = styled.input.attrs({
@@ -15,6 +26,10 @@ export const SearchInput = styled.input.attrs({
   font-size: 1rem;
   border: 1px solid #f1f1f1;
   border-radius: 4px;
+
+  ${props => props.mobile && `
+    width: 100%;
+  `};
 `;
 
 export const SearchDropdown = styled(props => (

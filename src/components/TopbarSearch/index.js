@@ -122,11 +122,12 @@ class TopbarSearch extends Component {
     const { cart } = this.props;
 
     return (
-      <styles.Search>
+      <styles.Search {...this.props}>
         <styles.SearchInput
           value={this.state.search.query}
           onChange={this.handleSearchQuery}
           onFocus={this.handleSearchQueryFocus}
+          {...this.props}
         />
 
         <styles.SearchDropdown

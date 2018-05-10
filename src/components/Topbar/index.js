@@ -52,6 +52,10 @@ class Topbar extends Component {
                 </AuthConsumer>
               </styles.Nav>
             </styles.Container>
+
+            <styles.Container mobile>
+              <TopbarSearch cart={cart} mobile />
+            </styles.Container>
           </styles.Topbar>
         )}
       </CartConsumer>

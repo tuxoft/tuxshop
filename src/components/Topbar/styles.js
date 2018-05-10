@@ -5,10 +5,14 @@ import ContainerComponent from "../Container";
 import ButtonComponent from "../Button";
 
 export const Topbar = styled.header`
-  height: 80px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   // Tablet
   @media (min-width: 600px) {
+    flex-direction: row;
     height: 100px;
   }
 
@@ -19,9 +23,29 @@ export const Topbar = styled.header`
 `;
 
 export const Container = styled(ContainerComponent)`
-  height: 100%;
   flex-direction: row;
   align-items: center;
+  flex: 2;
+
+  // Tablet
+  @media (min-width: 600px) {
+    height: 100%;
+    flex: none;
+  }
+
+  ${props => props.additional && `
+    // margin-top: 2rem;
+  `};
+
+  ${props => props.mobile && `
+    flex: 1;
+    
+    // Tablet
+    @media (min-width: 600px) {
+      display: none;
+      flex: none;  
+    }
+  `};
 `;
 
 export const Brand = styled.h1`
@@ -37,6 +61,12 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   font-weight: 600;
+  margin-left: auto;
+
+  // Tablet
+  @media (min-width: 600px) {
+    margin-left: 0;
+  }
 `;
 
 export const NavItem = styled(props => <Link {...props} />)`
